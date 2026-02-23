@@ -10,12 +10,12 @@ One of the related work articles have split the data set into 50/50 for training
 
 ### 1. Prepaire and normalize the datasets
 
-Prepaire and normalize the datasets to a unified structure. For our experiment to work we need to filter out persons with less the two images. This is so we can split tha dataset into known and unknown persons. The known persons will be the ones that have pictures in the DB, which we expect to get an identity of. The unknown persons will be the ones that do not have pictures in the DB, which we expect the identity of the person to be unknown. We will talk about the % of the split. However we will use a 80% of the known persons image in the database. With the following 20% as test data. With the unkown persons we will use all the images in the dataset as test data.
+First we need to normalize the datasets to a unified structure. 
 
 For example:
 
-- We have 10 images of Brad Pitt and he is in the known group. 8 of the 10 images will be in the database and 2 of them will be in the test set.
-- We have 10 images of Will Smith and he is in the unknown group. All 10 images will be in the test set.
+- We have 10 images of Brad Pitt and he is in the known group. 5 of the 10 images will be in the database and 5 of them will be in the test set.
+- We have 10 images of Will Smith and he is in the unknown group. 5 of the 10 images will be in the test set.
 
 DeepFace want to have the following structure on the data in their databse:
 
@@ -32,6 +32,8 @@ DeepFace want to have the following structure on the data in their databse:
     - 📷 ...
 
 _We need to place the images in the correct folder structure for the DeepFace framework to work. Known and unkown persons in the correct folder. The above is an example of how the known persons are placed in the database._
+
+When our datasets is normalized we can split the dataset into know and unknown persons. We will use a 50/50 split for both the groups and the image selection. SciKit will be used for doing the splitting.
 
 ### 2. Run the experiment on all models.
 
@@ -56,7 +58,7 @@ For each test run we will compare different key figures and metrics. We will use
 
 To be able to calculate the scores correct we need to save every result in an array which we later can send to the confusion matrix. The confusion matrix is a needed to calculate the scores correct.
 
-_We can use scikit-learn to get the training and testing set. We can also use the confusion matrix from scikit-learn._
+_We can use scikit-learn to get the training and testing set. We can also use the confusion matrix from scikit-learn. And also for some scores._
 
 TP = True Positive
 TN = True Negative
@@ -67,7 +69,7 @@ FN = False Negative
 
 ### Sensitivity / Recall
 
-Hur ofta systemet korrekt nekar igenkänning när ansiktet inte tillhör någon i databasen.
+Hur ofta systemet korrekt igenkänner när ansiktet tillhör någon i databasen.
 
 ```markdown
 Sensitivity=TP/(TP+FN)
@@ -104,7 +106,3 @@ Den visar hur väl modellen presterar överlag, utan att gynna bara precision el
 ```markdown
 F1=2∗(Precision∗Sensitivity)/(Precision+Sensitivity)
 ```
-
-## Things left to decide
-
-- How to split the dataset into known and unknown persons.
