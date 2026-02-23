@@ -13,10 +13,12 @@ One of the related work articles have split the data set into 50/50 for training
 Prepaire and normalize the datasets to a unified structure. For our experiment to work we need to filter out persons with less the two images. This is so we can split tha dataset into known and unknown persons. The known persons will be the ones that have pictures in the DB, which we expect to get an identity of. The unknown persons will be the ones that do not have pictures in the DB, which we expect the identity of the person to be unknown. We will talk about the % of the split. However we will use a 80% of the known persons image in the database. With the following 20% as test data. With the unkown persons we will use all the images in the dataset as test data.
 
 For example:
+
 - We have 10 images of Brad Pitt and he is in the known group. 8 of the 10 images will be in the database and 2 of them will be in the test set.
 - We have 10 images of Will Smith and he is in the unknown group. All 10 images will be in the test set.
 
 DeepFace want to have the following structure on the data in their databse:
+
 - 📁 database
   - 📁 person-name
     - 📷 001.jpg
@@ -29,7 +31,7 @@ DeepFace want to have the following structure on the data in their databse:
     - 📷 003.jpg
     - 📷 ...
 
-*We need to place the images in the correct folder structure for the DeepFace framework to work. Known and unkown persons in the correct folder. The above is an example of how the known persons are placed in the database.*
+_We need to place the images in the correct folder structure for the DeepFace framework to work. Known and unkown persons in the correct folder. The above is an example of how the known persons are placed in the database._
 
 ### 2. Run the experiment on all models.
 
@@ -39,12 +41,13 @@ We wil run the experiment on all models that are supported by the DeepFace frame
 
 We will use a confusion matrix to evaluate the results. This will help us to get a better and compareable result on the models.
 
-| | Predicted Known | Predicted Unknown |
-| --- | --- | --- |
-| Actual Known | TP | FN |
-| Actual Unknown | FP | TN |
+|                | Predicted Known | Predicted Unknown |
+| -------------- | --------------- | ----------------- |
+| Actual Known   | TP              | FN                |
+| Actual Unknown | FP              | TN                |
 
 For each test run we will compare different key figures and metrics. We will use the following metrics:
+
 - Sensitivity / Recall
 - Specificity
 - Accuracy
@@ -53,7 +56,7 @@ For each test run we will compare different key figures and metrics. We will use
 
 To be able to calculate the scores correct we need to save every result in an array which we later can send to the confusion matrix. The confusion matrix is a needed to calculate the scores correct.
 
-*We can use scikit-learn to get the training and testing set. We can also use the confusion matrix from scikit-learn.*
+_We can use scikit-learn to get the training and testing set. We can also use the confusion matrix from scikit-learn._
 
 TP = True Positive
 TN = True Negative
@@ -103,4 +106,5 @@ F1=2∗(Precision∗Sensitivity)/(Precision+Sensitivity)
 ```
 
 ## Things left to decide
+
 - How to split the dataset into known and unknown persons.
