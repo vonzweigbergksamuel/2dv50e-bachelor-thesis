@@ -10,7 +10,7 @@ One of the related work articles have split the data set into 50/50 for training
 
 ### 1. Prepaire and normalize the datasets
 
-First we need to normalize the datasets to a unified structure. 
+First we need to normalize the datasets to a unified structure.
 
 For example:
 
