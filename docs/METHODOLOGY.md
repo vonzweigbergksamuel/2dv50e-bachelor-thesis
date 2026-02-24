@@ -96,7 +96,7 @@ Definitions:
   - Precision = TP / (TP + FP)
 
 - F1 score
-  - F1 = 2 _ (Precision _ Sensitivity) / (Precision + Sensitivity)
+  - F1 = 2 * (Precision * Sensitivity) / (Precision + Sensitivity)
 
 Evaluation procedure:
 
