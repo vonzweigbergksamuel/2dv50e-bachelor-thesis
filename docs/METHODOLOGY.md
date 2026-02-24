@@ -113,7 +113,15 @@ Evaluation procedure:
 What models we will compare.
 
 - Facenet512
+- Facenet
+- Dlib
+- VGG Face
 - ArcFace
+- GhostFaceNet
+- SFace
+- OpenFace
+- DeepFace
+- DeepID
 
 ### Dependent variables
 
