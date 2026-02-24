@@ -1,6 +1,6 @@
 # Methodology
 
-We will complete these tests with the following face detection model: MTCNN. That is the same our related work article uses.
+We will perform a controlled scientific experiement to evaluate face-recognition models in the DeepFace framework.
 
 ## Related Work
 
@@ -44,78 +44,102 @@ To fully and properly test the capabilitys of the face recognition models we nee
 - After the first split, Will Smith gets put in the _unknown_ group.
   - There exists 10 images of Will Smith. 5 of the 10 images will be choosen at random and used to test the models.
 
-### 3. Run the experiment on all models.
+### 3. Perform experiments
 
-We will run the experiment on all face recognition models that are supported by the DeepFace framework. After each prediction we will save the result and store it until all tests are done for that model, Then for each model we will evaluate the results.
+- Run the experiment for every face-recognition model supported by the DeepFace framework.
+- For each model perform 10 independent trials. For every trial:
+  - Shuffle the dataset, then split it into training and test sets (record the random seed).
+  - Run the model on the test set and save the model's prediction, the correct label and the metric scores (mentioned later) to a Google Spreadsheet.
+  - After completing 10 trials for a model, compute the average and standard deviation for each metric.
 
-We will run the experiment 10 times for each model to get a better average result. For each run the dataset will be reseted and split again.
+**Notes:**
 
-After a complete run we will calculate the scores.
+- Maybe save raw scores (probabilities, similarity scores or distance metric) and each trial's confusion matrix. Raw scores could be useful if we decide to change/play around with thresholds/cutoffs.
+- Use consistent splitting and seeding so results are reproducible.
 
-### 4. Evaluate the results.
+### 4. Evaluate result
 
-We will use a confusion matrix to evaluate the results. This will help us to get a better and comparable result on the models.
+We evaluate per-trial performance using a confusion matrix, then aggregate metrics across trials.
+
+Classes:
+
+- A class is a category the model predicts for a sample.
+- In this project the two classes are:
+  - Known, the model recognizes the person.
+  - Unknown, the model does not recognize the person.
+- Class imbalance means one class appears much more often than the other (for example, many Known samples but few Unknown samples).
+
+Confusion matrix layout:
 
 |                | Predicted Known | Predicted Unknown |
 | -------------- | --------------- | ----------------- |
 | Actual Known   | TP              | FN                |
 | Actual Unknown | FP              | TN                |
 
-For each test run we will compare different key figures and metrics. We will use the following metrics:
+Definitions:
+
+- TP = True Positive
+- TN = True Negative
+- FP = False Positive
+- FN = False Negative
 
 - Sensitivity / Recall
+  - Sensitivity = TP / (TP + FN)
+
 - Specificity
+  - Specificity = TN / (TN + FP)
+
 - Accuracy
+  - Accuracy = (TP + TN) / (TP + TN + FP + FN)
+
 - Precision
-- F1-score
+  - Precision = TP / (TP + FP)
 
-To be able to calculate the scores correct we need to save every result in an array which we later can send to the confusion matrix. The confusion matrix is a needed to calculate the scores correct.
+- F1 score
+  - F1 = 2 _ (Precision _ Sensitivity) / (Precision + Sensitivity)
 
-_We can use scikit-learn to get the training and testing set. We can also use the confusion matrix from scikit-learn. And also for some scores._
+Evaluation procedure:
 
-TP = True Positive
-TN = True Negative
-FP = False Positive
-FN = False Negative
+1. For each trial compute the confusion matrix and the metrics above.
+2. Report the average and standard deviation of each metric across the 10 trials.
+3. Save the results to a Google Spreadsheet.
+4. If one class is much rarer than the other (class imbalance), prefer reporting precision, recall, and F1 instead of accuracy.
+5. Use scikit-learn for `confusion_matrix`.
 
-[Read more about the Confusion Matrix](https://www.geeksforgeeks.org/machine-learning/confusion-matrix-machine-learning/)
+## Controlled Scientific Experiment
 
-### Sensitivity / Recall
+### Independent variables
 
-Hur ofta systemet korrekt igenkänner när ansiktet tillhör någon i databasen.
+What models we will compare.
 
-```markdown
-Sensitivity=TP/(TP+FN)
-```
+- Facenet512
+- ArcFace
 
-### Specificity
+### Dependent variables
 
-Hur ofta systemet korrekt nekar igenkänning när ansiktet inte tillhör någon i databasen.
+We will report metrics like precision, sensitivity/recall, accuracy, F1 and confusion-matrix.
 
-```markdown
-Specificity=TN/(TN+FP)
-```
+### Controlled variables
 
-### Accuracy
+- Dataset versions and normalized folder structure
+- Face detector and preprocessing pipeline, MTCNN, alignment, normalization (DeepFace internal)
+- Split method and proportions (50/50 known/unknown, record random seeds)
+- Number of trials (10) and the procedure per trial (shuffle -> split -> test)
+- Software and model versions (DeepFace version, model weights, scikit-learn version, python version)
+- Evaluation code (same scripts/calculations)
+- Reporting format (Google Spreadsheet, saved logs to file?)
+- Hardware specs (CPU, GPU & OS) for reproducibility
 
-Om det finns många fler negativa än positiva fall kan accuracy vara hög även om modellen är dålig på det viktiga.
+### Partially-controlled
 
-```markdown
-Accuracy=(TP+TN)/(TP+TN+FP+FN)
-```
+- Random seed per trial (allowed randomness but record seed)
+- Non-determinism from library implementations? Implement calculations ourselves?
 
-### Precision
+### Uncontrolled variables
 
-Hur ofta systemet har rätt när det säger att två ansikten matchar.
-
-```markdown
-Precision=TP/(TP+FP)
-```
-
-### F1-score
-
-Den visar hur väl modellen presterar överlag, utan att gynna bara precision eller bara sensitivity.
-
-```markdown
-F1=2∗(Precision∗Sensitivity)/(Precision+Sensitivity)
-```
+- Label errors in dataset
+- Data leakage (same identity in train and test data due to faulty splitting)
+- Class imbalance (many Known vs few Unknown)
+- Correlated samples (near-duplicates, same scene/lighting)
+- Demographic biases (age, ethnicity, gender distribution differences across classes)
+- Image quality variation
