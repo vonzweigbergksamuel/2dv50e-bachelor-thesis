@@ -2,6 +2,14 @@
 
 ## Primary Articles
 
+### [A Benchmark of Facial Recognition Pipelines and Co-Usability Performances of Modules](https://dergipark.org.tr/en/download/article-file/3573195)
+
+_From the creator of DeepFace. Could be good as reference for framework and models etc._
+
+**Reference:**
+
+[X] S. Serengil and A. Ozpinar, ‘A Benchmark of Facial Recognition Pipelines and Co-Usability Performances of Modules’, Bilişim Teknolojileri Dergisi, vol. 17, pp. 95–107, 03 2024.
+
 ### [Comparison of Face Recognition Accuracy of ArcFace, Facenet and Facenet512 Models on Deepface Framework](https://ieeexplore.ieee.org/abstract/document/10127799)
 
 **Reference:**
