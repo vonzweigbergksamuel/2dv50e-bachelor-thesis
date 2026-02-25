@@ -45,12 +45,12 @@ The motivation for this work originates from a collaboration with Flowbic AB, a 
 
 ## Related Work
 
-Previous studies compared and performed benchmarks on various models, based on performance metrics. Some of the performance metrics were sensitivity, accuracy, specificity, precision and F1-score [5], [6]. One study used the dataset LFW, which has over 13,000 images [6]. The other study used an indonesia dataset, which contains two photos of ten different humans [5]. Both studies used their dataset through their benchmark on every model. These datasets were tested on a limited number of models [5], [6].
+Previous studies compared and performed benchmarks on various models, based on performance metrics. Some of the performance metrics were sensitivity, accuracy, specificity, precision and F1-score [4], [5]. One study used the dataset LFW, which has over 13,000 images [4]. The other study used an indonesia dataset, which contains two photos of ten different humans [5]. Both studies used their dataset through their benchmark on every model. These datasets were tested on a limited number of models [4], [5].
 
 The first study benchmarked the models FaceNet512, FaceNet and ArcFace with the Indonesia dataset. The study found that the FaceNet512 model performed best. However, they also found that the FaceNet512 model had a sensitivity score of 66% instead of the ArcFace model which performed a sensitivity score of 100% [5] This shows that the best accuracy score is not always the best model.
-The second study benchmarked the models FaceNet, OpenFace, DeepFace and VGGFace with the LFW dataset. The study found that the FaceNet model performed best. [6]
+The second study benchmarked the models FaceNet, OpenFace, DeepFace and VGGFace with the LFW dataset. The study found that the FaceNet model performed best. [4]
 
-Another study performed a similar experiment as we intend to do. The study benchmark different models and use multiple datasets. However the study only benchmark a limited number of models, which all have their own dataset. On top of that they only measure the accuracy score. This means that each benchmark can´t be compared to the other benchmarks. Therefore, this limits the validity of the result [7].
+Another study performed a similar experiment as we intend to do. The study benchmark different models and use multiple datasets. However the study only benchmark a limited number of models, which all have their own dataset. On top of that they only measure the accuracy score. This means that each benchmark can´t be compared to the other benchmarks. Therefore, this limits the validity of the result [6].
 
 ## Knowledge Gap
 
@@ -76,6 +76,4 @@ The evaluation is conducted through benchmarking of multiple DeepFace-supported 
 
 [5] A. Firmansyah, T. F. Kusumasari, and E. N. Alam, ‘Comparison of Face Recognition Accuracy of ArcFace, Facenet and Facenet512 Models on Deepface Framework’, in 2023 International Conference on Computer Science, Information Technology and Engineering (ICCoSITE), 2023, pp. 535–539.
 
-[6] M. D. A. Munim and M. S. Rahman Kohinoor, ‘Performance Evaluation of Deep Learning-Based Facial Recognition Models on Mobile Computing Environments’, in 2023 IEEE 11th Region 10 Humanitarian Technology Conference (R10-HTC), 2023, pp. 13–18.
-
-[7] Li, Minghan, ‘Research and Analysis of Facial Recognition Based on FaceNet, DeepFace, and OpenFace’, ITM Web Conf., vol. 70, p. 03009, 2025.
+[6] Li, Minghan, ‘Research and Analysis of Facial Recognition Based on FaceNet, DeepFace, and OpenFace’, ITM Web Conf., vol. 70, p. 03009, 2025.
