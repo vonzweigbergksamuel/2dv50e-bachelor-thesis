@@ -96,7 +96,7 @@ Definitions:
   - Precision = TP / (TP + FP)
 
 - F1 score
-  - F1 = 2 * (Precision * Sensitivity) / (Precision + Sensitivity)
+  - F1 = 2 x (Precision x Sensitivity) / (Precision + Sensitivity)
 
 Evaluation procedure:
 
@@ -151,3 +151,9 @@ We will report metrics like precision, sensitivity/recall, accuracy, F1 and conf
 - Correlated samples (near-duplicates, same scene/lighting)
 - Demographic biases (age, ethnicity, gender distribution differences across classes)
 - Image quality variation
+
+## Research Questions
+
+1. How do newer DeepFace-supported models (e.g. GhostFaceNet & latest DeepFace) compare to established models (FaceNet, ArcFace, VGGFace) on multiple benchmarks ("LFW", "Face Recognition" & "Indian Faces Image Classification") using accuracy, sensitivity, precision, F1 and confusion matrices?
+
+2. To what extent do model performance rankings generalize across datasets, i.e. are top-performing models on LFW also top on datasets of Famous people or Indian people (measuring rank correlation and performance variance)?
