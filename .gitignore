@@ -14,3 +14,7 @@ wheels/
 
 # Datasets
 data/
+
+db/
+
+test_subjects/
