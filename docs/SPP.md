@@ -16,7 +16,7 @@ An Updated Multi-Dataset Evaluation of Face Recognition Models in the DeepFace f
 
 ## Elevator Pitch
 
-Face recognition models are commonly evaluated using a limited set of benchmarks and models. Several newer models supported by the DeepFace framework, such as GhostFaceNet and DeepFace, are not included in earlier comparative studies. This thesis presents an updated empirical evaluation of a wide range of DeepFace-supported models across multiple datasets, including LFW, YTF, and an Indonesian face dataset. The goal is to analyze performance differences and assess how well conclusions drawn from earlier studies generalize to newer models and datasets.
+Face recognition models are commonly evaluated using a limited set of benchmarks and models. Several newer models supported by the DeepFace framework, such as GhostFaceNet and DeepFace, are not included in earlier comparative studies. This thesis presents an updated empirical evaluation of a wide range of DeepFace-supported models across multiple datasets, including LFW, RFW, and an Indonesian face dataset. The goal is to analyze performance differences and assess how well conclusions drawn from earlier studies generalize to newer models and datasets.
 
 ## Milestones
 
@@ -52,6 +52,10 @@ The second study benchmarked the models FaceNet, OpenFace, DeepFace and VGGFace 
 
 Another study performed a similar experiment as we intend to do. The study benchmark different models and use multiple datasets. However the study only benchmark a limited number of models, which all have their own dataset. On top of that they only measure the accuracy score. This means that each benchmark can´t be compared to the other benchmarks. Therefore, this limits the validity of the result [6].
 
+DeepFace has also conducted an experiment on the DeepFace framework using the LFW dataset. However the experiment focused on testing pairs of images, which are selected from the LFW dataset and determine whether the same person appears in both images. One pair includes two images of people and a label if they match or not. They performed 1:1 verification, which means that each image is only verified against the other image in the same pair. We intend to perform 1:N search, which means that one images in compared to N number of images. [7]
+
+The third study focuses on facial recognition models, face detector models, distance metrics, and alignment modes. It provides a well documented evaluation of the entire facial recognition pipeline and highlights the importance of face detector models. However, the experiments were conducted solely on the LFW dataset [8].
+
 ## Knowledge Gap
 
 Existing comparative studies of face recognition models are several years old and do not include newer models currently supported by the DeepFace framework, such as GhostFaceNet and DeepFace. Furthermore, most studies rely on a single benchmark dataset, limiting insight into cross-dataset generalization.
@@ -59,6 +63,8 @@ Existing comparative studies of face recognition models are several years old an
 ## Knowledge Contribution
 
 This thesis provides an updated empirical evaluation of face recognition models available in the DeepFace framework, including newer models not covered in previous studies. By evaluating performance across multiple datasets, the study contributes insights into the stability and generalizability of model performance beyond single-dataset benchmarks.
+
+Moreover, most existing evaluations focus on 1:1 face verification scenarios, while real-world deployments often require 1:N identification, which remains insufficiently explored within the DeepFace ecosystem.
 
 ## Evaluation
 
@@ -77,3 +83,8 @@ The evaluation is conducted through benchmarking of multiple DeepFace-supported 
 [5] A. Firmansyah, T. F. Kusumasari, and E. N. Alam, ‘Comparison of Face Recognition Accuracy of ArcFace, Facenet and Facenet512 Models on Deepface Framework’, in 2023 International Conference on Computer Science, Information Technology and Engineering (ICCoSITE), 2023, pp. 535–539.
 
 [6] Li, Minghan, ‘Research and Analysis of Facial Recognition Based on FaceNet, DeepFace, and OpenFace’, ITM Web Conf., vol. 70, p. 03009, 2025.
+
+[7] S. I. Serengil, “Perform-Experiments.ipynb,” DeepFace Benchmarks, GitHub repository. [Online]. Available: https://github.com/serengil/deepface/blob/master/benchmarks/Perform-Experiments.ipynb
+. [Accessed: Feb. 27, 2026].
+
+[8] Ş. İ. Serengil and A. Özpınar, “A Benchmark of Facial Recognition Pipelines and Co-Usability Performances of Modules,” Bilişim Teknolojileri Dergisi, vol. 17, no. 2, pp. 95–107, Apr. 2024.

@@ -4,7 +4,7 @@ We will perform a controlled scientific experiement to evaluate face-recognition
 
 ## Related Work
 
-One of the related work articles have split the data set into 50/50 for training and testing. The second article of the related work uses 5,000 images out of 13,000 images. However it is still unknown if they trained on 13,000 images and tested on 5,000 images.
+One of the related work articles have split the data set into 50/50 for known and unkown. The second article of the related work uses 5,000 images out of 13,000 images. However it is still unknown if they trained on 13,000 images and tested on 5,000 images.
 
 ## Plan
 
@@ -49,7 +49,7 @@ To fully and properly test the capabilitys of the face recognition models we nee
 - Run the experiment for every face-recognition model supported by the DeepFace framework.
 - For each model perform 10 independent trials. For every trial:
   - Shuffle the dataset, then split it into training and test sets (record the random seed).
-  - Run the model on the test set and save the model's prediction, the correct label and the metric scores (mentioned later) to a Google Spreadsheet.
+  - Run the model on the test set and save the model's prediction, the correct label, the metric scores (mentioned later) and average time per sample to a Google Spreadsheet.
   - After completing 10 trials for a model, compute the average and standard deviation for each metric.
 
 **Notes:**
@@ -100,8 +100,8 @@ Definitions:
 
 Evaluation procedure:
 
-1. For each trial compute the confusion matrix and the metrics above.
-2. Report the average and standard deviation of each metric across the 10 trials.
+1. For each trial compute the confusion matrix, the metrics above, and average time per sample (or per test set).
+2. Report the average and standard deviation of each metric (including average time) across the 10 trials.
 3. Save the results to a Google Spreadsheet.
 4. If one class is much rarer than the other (class imbalance), prefer reporting precision, recall, and F1 instead of accuracy.
 5. Use scikit-learn for `confusion_matrix`.
@@ -125,7 +125,7 @@ What models we will compare.
 
 ### Dependent variables
 
-We will report metrics like precision, sensitivity/recall, accuracy, F1 and confusion-matrix.
+We will report metrics like precision, sensitivity/recall, accuracy, F1, confusion-matrix and average time.
 
 ### Controlled variables
 
@@ -154,6 +154,6 @@ We will report metrics like precision, sensitivity/recall, accuracy, F1 and conf
 
 ## Research Questions
 
-1. How do newer DeepFace-supported models (e.g. GhostFaceNet & latest DeepFace) compare to established models (FaceNet, ArcFace, VGGFace) on multiple benchmarks ("LFW", "Face Recognition" & "Indian Faces Image Classification") using accuracy, sensitivity, precision, F1 and confusion matrices?
+1. How do newer DeepFace-supported models (e.g. GhostFaceNet & latest DeepFace) compare to established models (FaceNet, ArcFace, VGGFace) on multiple benchmarks ("LFW", "RFW" & "Indian Faces Image Classification") using accuracy, sensitivity, precision, F1, confusion matrices and average time?
 
-2. To what extent do model performance rankings generalize across datasets, i.e. are top-performing models on LFW also top on datasets of Famous people or Indian people (measuring rank correlation and performance variance)?
+2. To what extent do model performance rankings generalize across datasets, i.e. are top-performing models on LFW also top on datasets of RFW or Indian people (measuring rank correlation and performance variance)?

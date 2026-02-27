@@ -53,3 +53,9 @@ _Can be good to refference when writing about Face detection, Feature extraction
 **Reference:**
 
 [X] S. Ilkin Serengil. “deepface 0.0.98” PyPi.org. Accessed: Feb. 2, 2026. [Online.] Available: https://pypi.org/project/deepface/
+
+
+[X] S. I. Serengil, “Perform-Experiments.ipynb,” DeepFace Benchmarks, GitHub repository. [Online]. Available: https://github.com/serengil/deepface/blob/master/benchmarks/Perform-Experiments.ipynb
+. [Accessed: Feb. 27, 2026].
+
+[X] Ş. İ. Serengil and A. Özpınar, “A Benchmark of Facial Recognition Pipelines and Co-Usability Performances of Modules,” Bilişim Teknolojileri Dergisi, vol. 17, no. 2, pp. 95–107, Apr. 2024.
