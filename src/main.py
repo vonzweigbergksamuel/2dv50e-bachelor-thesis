@@ -8,6 +8,7 @@ from config import MODELS, TRIALS
 from dotenv import load_dotenv
 from lib.generate_random_state import generate_random_state
 import os
+from services.scores_service import calculate_scores
 
 load_dotenv()
 
@@ -26,6 +27,8 @@ def main():
             
                 actual, predicted = run_experiment(model)
                 
+                accuracy, sensitivity, specificity, precision, f1_score = calculate_scores(actual, predicted)
+                
                 print(f"Actual: {actual}")
                 print(f"Predicted: {predicted}")
                 
@@ -33,7 +36,12 @@ def main():
                     "trial": index + 1,
                     "seed": random_state,
                     "model": model,
-                    "dataset": dataset
+                    "dataset": dataset,
+                    "accuracy": accuracy,
+                    "sensitivity": sensitivity,
+                    "specificity": specificity,
+                    "precision": precision,
+                    "f1_score": f1_score
                 }
                 
                 print_scores(scores)
@@ -41,28 +49,5 @@ def main():
                 # time.sleep(5)
                 # clean_up()
             
-    # print("Hello from 2dv50e-bachelor-thesis!")
-    # random_state = generate_random_state()
-    # ###################### Preprocessing ######################
-    # print("Starting preprocessing...")
-    # path = pathlib.Path(__file__).parent.parent / "data" / "dataset"
-    # pre_process(path, MODEL, random_state)
-    # print("Preprocessing complete!")
-    
-    # ###################### Experiment ######################
-    # print("Starting experiment...")
-    # run_experiment(MODEL)
-    
-    # ###################### Results ######################
-    # scores = {
-    #     "seed": random_state
-    # }
-    
-    # print_scores(scores)
-    
-    # time.sleep(5)
-    # clean_up()
-
-
 if __name__ == "__main__":
     main()
