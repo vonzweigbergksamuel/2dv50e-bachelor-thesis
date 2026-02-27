@@ -1,0 +1,45 @@
+services:
+  # backend:
+  #   image: miri-backend-mock:latest
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     DEEPFACE_POSTGRES_URI: ${DEEPFACE_POSTGRES_URI:-postgresql://postgres:postgres@localhost:5432/deepface}
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   networks:
+  #     - miri-network
+
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: deepface
+    restart: unless-stopped
+    volumes:
+      - deepface-db-data:/var/lib/postgresql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U postgres -d deepface",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - deepface-network
+
+networks:
+  deepface-network:
+    driver: bridge
+
+volumes:
+  deepface-db-data:

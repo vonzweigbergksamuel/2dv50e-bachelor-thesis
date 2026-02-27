@@ -3,18 +3,20 @@ import os
 import shutil
 import pathlib
 from sklearn.model_selection import train_test_split
-from lib.generate_random_state import generate_random_state
+from deepface import DeepFace
+from config import DETECTOR_BACKEND
 
-DB_FOLDER = "db"
 TEST_SUBJECTS_FOLDER = "test_subjects"
 
-def pre_process(dataset_path: pathlib.Path, random_state: int = generate_random_state()):
+UNKNOWN = "Unknown"
+
+NUMBER_OF_UNKNOWN_IMAGES = 0
+
+def pre_process(dataset_path: pathlib.Path, model: str, random_state: int):
   """
   Preprocesses the dataset by splitting it into a known and unknown set.
   """
-  print("Preprocessing dataset from: ", dataset_path)
   # Create the folders if they don't exist
-  os.makedirs(DB_FOLDER, exist_ok=True)
   os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
   
   identities = os.listdir(dataset_path)
@@ -34,15 +36,15 @@ def pre_process(dataset_path: pathlib.Path, random_state: int = generate_random_
     for image in db:
       img_path = subject_path / image
       
-      dest = dataset_path.parent.parent / DB_FOLDER / subject
-      copy_to_folder(img_path, dest)
+      # Perform the deepface.register function
+      DeepFace.register(img=img_path, img_name=subject, model_name=model, detector_backend=DETECTOR_BACKEND)
       
     # Copy the known images to the TEST_SUBJECTS folder
     for image in test:
       img_path = subject_path / image
       
       dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / subject
-      copy_to_folder(img_path, dest)
+      copy_to_test_subjects_folder(img_path, dest)
       
   # Split the unknown subjects into unknown images.
   for subject in unkown:
@@ -56,12 +58,19 @@ def pre_process(dataset_path: pathlib.Path, random_state: int = generate_random_
     for image in test:
       img_path = subject_path / image
       
-      dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / subject
-      copy_to_folder(img_path, dest)
+      dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / UNKNOWN
+      copy_to_test_subjects_folder(img_path, dest)
       
   return random_state
 
-def copy_to_folder(src: pathlib.Path, dest_dir: pathlib.Path):
+def copy_to_test_subjects_folder(src: pathlib.Path, dest_dir: pathlib.Path):
+  """
+  Copies a file to the test subjects folder.
+  """
+  global NUMBER_OF_UNKNOWN_IMAGES
+  NUMBER_OF_UNKNOWN_IMAGES += 1
+    
   os.makedirs(dest_dir, exist_ok=True)
-  shutil.copyfile(src, dest_dir / src.name)
+  
+  shutil.copyfile(src, dest_dir / f"{NUMBER_OF_UNKNOWN_IMAGES}{src.suffix}")
   
