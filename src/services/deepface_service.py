@@ -8,20 +8,18 @@ from config import DISTANCE_METRIC, DETECTOR_BACKEND
 def run_experiment(model: str):
   """
   Runs an experiment with the given model and seed.
-  """
+  """  
   project_root = pathlib.Path(__file__).parent.parent.parent
   TEST_SUBJECTS_PATH = project_root / TEST_SUBJECTS_FOLDER
   
   TEST_SUBJECTS = os.listdir(TEST_SUBJECTS_PATH)
   
-  print(f"TEST_SUBJECTS_IMAGES: {TEST_SUBJECTS}")
+  # print(f"TEST_SUBJECTS_IMAGES: {TEST_SUBJECTS}")
 
   actual_result = []
   predicted_result = []
   
-  for subject in TEST_SUBJECTS:
-    print(f"Subject: {subject}")
-    
+  for subject in TEST_SUBJECTS:    
     subject_images = os.listdir(TEST_SUBJECTS_PATH / subject)
     
     # print(subject_images)
@@ -52,5 +50,5 @@ def run_experiment(model: str):
       else:
         top_match = df.iloc[0]
         predicted_result.append(top_match["img_name"])
-    
+  
   return actual_result, predicted_result

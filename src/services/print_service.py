@@ -15,3 +15,9 @@ def print_scores(scores: dict):
   print("Precision: ", scores['precision'])
   print("F1 Score: ", scores['f1_score'])
   print("--------------------------------")
+  
+def show_progress(current: int, total: int):
+  """
+  Shows the progress of the preprocesssing.
+  """
+  print(f"Progress: {int(current / total * 100)}%")

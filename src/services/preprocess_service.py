@@ -25,7 +25,7 @@ def pre_process(dataset_path: pathlib.Path, model: str, random_state: int):
   known, unkown = train_test_split(identities, test_size=0.5, train_size=0.5, random_state=random_state)
   
   # Split the known subjects into known and unknown images.
-  for subject in known:
+  for subject in known:    
     subject_path = dataset_path / subject
     
     images = os.listdir(subject_path)
@@ -45,6 +45,7 @@ def pre_process(dataset_path: pathlib.Path, model: str, random_state: int):
       
       dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / subject
       copy_to_test_subjects_folder(img_path, dest)
+
       
   # Split the unknown subjects into unknown images.
   for subject in unkown:
@@ -60,7 +61,7 @@ def pre_process(dataset_path: pathlib.Path, model: str, random_state: int):
       
       dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / UNKNOWN
       copy_to_test_subjects_folder(img_path, dest)
-      
+    
   return random_state
 
 def copy_to_test_subjects_folder(src: pathlib.Path, dest_dir: pathlib.Path):
