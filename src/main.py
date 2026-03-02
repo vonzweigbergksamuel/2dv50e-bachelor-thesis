@@ -9,7 +9,7 @@ from lib.generate_random_state import generate_random_state
 from services.deepface_service import run_experiment
 from services.preprocess_service import insert_into_database, pre_process
 
-# from lib.clean_up import clean_up_folder, clean_up_database
+from lib.clean_up import clean_up_folder, clean_up_database
 from services.print_service import print_scores, show_progress
 from services.scores_service import calculate_scores
 
@@ -34,9 +34,9 @@ def main():
             path = data_path / dataset
 
             images_to_db = pre_process(path, random_state)
-
+            
             print(f"Images to db: {images_to_db}")
-
+            
             for model in MODELS:
                 insert_into_database(images_to_db, model)
 
@@ -77,12 +77,13 @@ def main():
 
                 completed_runs += 1
                 show_progress(completed_runs, total_runs)
-
+                
+                clean_up_database()
+                
     for result in results:
         print_scores(result)
-
-    # clean_up()
-
-
+        
+    clean_up_folder()
+            
 if __name__ == "__main__":
     main()

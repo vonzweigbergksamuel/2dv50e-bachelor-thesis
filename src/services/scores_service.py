@@ -1,4 +1,3 @@
-from sklearn.metrics import confusion_matrix
 from services.preprocess_service import UNKNOWN
 
 # This service is used to calculate the following scores of a model: Accuracy, Sensitivity/Recall, Specificity, Precision, F1-score.

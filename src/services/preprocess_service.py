@@ -42,9 +42,6 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
             images, test_size=0.5, train_size=0.5, random_state=random_state
         )
 
-        print(f"DB: {db}")
-        print(f"Test: {test}")
-
         # Copy the known images to the DB folder
         for image in db:
             img_path = subject_path / image
