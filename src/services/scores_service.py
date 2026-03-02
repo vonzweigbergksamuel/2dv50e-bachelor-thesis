@@ -41,13 +41,15 @@ def calculate_f1_score(precision: float, sensitivity: float) -> float:
     return 2 * (precision * sensitivity) / (precision + sensitivity)
 
 
-def calculate_confusion_matrix(actual: list[str], predicted: list[str]) -> tuple[int, int, int, int]:
+def calculate_confusion_matrix(
+    actual: list[str], predicted: list[str]
+) -> tuple[int, int, int, int]:
     """Calculates the confusion matrix."""
     tn = 0
     fp = 0
     fn = 0
     tp = 0
-    
+
     for i in range(len(actual)):
         if actual[i] != UNKNOWN:
             if predicted[i] == actual[i]:
@@ -59,8 +61,9 @@ def calculate_confusion_matrix(actual: list[str], predicted: list[str]) -> tuple
                 tn += 1
             else:
                 fp += 1
-                
+
     return tn, fp, fn, tp
+
 
 def calculate_scores(
     actual: list[str], predicted: list[str]
