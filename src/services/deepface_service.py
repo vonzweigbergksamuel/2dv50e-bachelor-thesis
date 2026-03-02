@@ -1,5 +1,6 @@
 # This service is used to interface with the DeepFace framework.
 import os
+import time
 import pathlib
 from deepface import DeepFace
 from services.preprocess_service import TEST_SUBJECTS_FOLDER, UNKNOWN
@@ -19,23 +20,30 @@ def run_experiment(model: str):
 
     actual_result = []
     predicted_result = []
+    avg_time_per_subject = []
 
     for subject in TEST_SUBJECTS:
         subject_images = os.listdir(TEST_SUBJECTS_PATH / subject)
 
         # print(subject_images)
+        
+        time_per_images = []
 
         for image in subject_images:
             actual_result.append(subject)
 
             image_path = TEST_SUBJECTS_PATH / subject / image
 
+            start_time = time.perf_counter()
             search_result = DeepFace.search(
                 img=image_path,
                 model_name=model,
                 distance_metric=DISTANCE_METRIC,
                 detector_backend=DETECTOR_BACKEND,
             )
+            end_time = time.perf_counter()
+            
+            time_per_images.append(end_time - start_time)
 
             # DeepFace.search may return a DataFrame or a list of DataFrames
             if isinstance(search_result, list):
@@ -51,5 +59,9 @@ def run_experiment(model: str):
             else:
                 top_match = df.iloc[0]
                 predicted_result.append(top_match["img_name"])
+        
+        avg_time_per_subject.append(sum(time_per_images) / len(time_per_images))
+        
+    avg_time = sum(avg_time_per_subject) / len(avg_time_per_subject)
 
-    return actual_result, predicted_result
+    return actual_result, predicted_result, avg_time

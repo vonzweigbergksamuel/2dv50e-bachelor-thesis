@@ -6,10 +6,18 @@ from sklearn.model_selection import train_test_split
 from deepface import DeepFace
 from config import DETECTOR_BACKEND
 
+##############################
+# FOLDERS & FILES
+##############################
 TEST_SUBJECTS_FOLDER = "test_subjects"
+RESULTS_FILE = "results.txt"
+GOOGLE_SHEET_FILE = "google_sheet.txt"
 
+
+##############################
+# CONSTANTS
+##############################
 UNKNOWN = "Unknown"
-
 NUMBER_OF_UNKNOWN_IMAGES = 0
 
 
@@ -98,3 +106,17 @@ def insert_into_database(img_to_db: list[dict], model: str):
             model_name=model,
             detector_backend=DETECTOR_BACKEND,
         )
+
+def set_up_directories():
+    """
+    Sets up the directories for the project.
+    """
+    os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
+    
+    # Create result file
+    with open(RESULTS_FILE, "w", encoding="utf-8") as f:
+        f.write("")
+        
+    # Create google sheet file
+    with open(GOOGLE_SHEET_FILE, "w", encoding="utf-8") as f:
+        f.write("")
