@@ -34,9 +34,9 @@ def main():
             path = data_path / dataset
 
             images_to_db = pre_process(path, random_state)
-            
+
             print(f"Images to db: {images_to_db}")
-            
+
             for model in MODELS:
                 insert_into_database(images_to_db, model)
 
@@ -77,13 +77,14 @@ def main():
 
                 completed_runs += 1
                 show_progress(completed_runs, total_runs)
-                
+
                 clean_up_database()
-                
+
     for result in results:
         print_scores(result)
-        
+
     clean_up_folder()
-            
+
+
 if __name__ == "__main__":
     main()
