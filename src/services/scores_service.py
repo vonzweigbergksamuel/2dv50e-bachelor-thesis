@@ -64,7 +64,7 @@ def calculate_confusion_matrix(actual: list[str], predicted: list[str]) -> tuple
 
 def calculate_scores(
     actual: list[str], predicted: list[str]
-) -> tuple[float, float, float, float, float]:
+) -> tuple[float, float, float, float, float, int, int, int, int]:
     """
     Calculates the scores for the model.
 
@@ -84,4 +84,4 @@ def calculate_scores(
     specificity = calculate_specificity(tn, fp)
     precision = calculate_precision(tp, fp)
     f1_score = calculate_f1_score(precision, sensitivity)
-    return accuracy, sensitivity, specificity, precision, f1_score
+    return accuracy, sensitivity, specificity, precision, f1_score, tn, fp, fn, tp
