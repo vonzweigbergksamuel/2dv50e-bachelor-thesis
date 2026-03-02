@@ -11,7 +11,13 @@ from services.preprocess_service import (
     pre_process,
     set_up_directories,
 )
-from services.print_service import export_to_google_sheet, print_scores, save_results_to_file, show_progress, save_dataset_to_file
+from services.print_service import (
+    export_to_google_sheet,
+    print_scores,
+    save_results_to_file,
+    show_progress,
+    save_dataset_to_file,
+)
 from services.scores_service import calculate_scores
 
 load_dotenv()
@@ -81,14 +87,14 @@ def main():
                 show_progress(completed_runs, total_runs)
 
                 clean_up_database()
-            
+
             clean_up_folder()
 
         results.sort(key=lambda x: x["model"])
         for result in results:
             print_scores(result)
             save_results_to_file(result)
-        
+
         export_to_google_sheet(results)
 
 

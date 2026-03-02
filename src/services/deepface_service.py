@@ -26,7 +26,7 @@ def run_experiment(model: str):
         subject_images = os.listdir(TEST_SUBJECTS_PATH / subject)
 
         # print(subject_images)
-        
+
         time_per_images = []
 
         for image in subject_images:
@@ -42,7 +42,7 @@ def run_experiment(model: str):
                 detector_backend=DETECTOR_BACKEND,
             )
             end_time = time.perf_counter()
-            
+
             time_per_images.append(end_time - start_time)
 
             # DeepFace.search may return a DataFrame or a list of DataFrames
@@ -59,9 +59,9 @@ def run_experiment(model: str):
             else:
                 top_match = df.iloc[0]
                 predicted_result.append(top_match["img_name"])
-        
+
         avg_time_per_subject.append(sum(time_per_images) / len(time_per_images))
-        
+
     avg_time = sum(avg_time_per_subject) / len(avg_time_per_subject)
 
     return actual_result, predicted_result, avg_time

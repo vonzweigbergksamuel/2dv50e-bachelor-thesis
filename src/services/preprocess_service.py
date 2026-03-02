@@ -107,16 +107,17 @@ def insert_into_database(img_to_db: list[dict], model: str):
             detector_backend=DETECTOR_BACKEND,
         )
 
+
 def set_up_directories():
     """
     Sets up the directories for the project.
     """
     os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
-    
+
     # Create result file
     with open(RESULTS_FILE, "w", encoding="utf-8") as f:
         f.write("")
-        
+
     # Create google sheet file
     with open(GOOGLE_SHEET_FILE, "w", encoding="utf-8") as f:
         f.write("")
