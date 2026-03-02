@@ -1,15 +1,17 @@
+import os
 import pathlib
-from services.preprocess_service import pre_process, insert_into_database
+
+from dotenv import load_dotenv
+
+from config import MODELS, TRIALS
+from lib.download_models import download_models
+from lib.generate_random_state import generate_random_state
+from services.deepface_service import run_experiment
+from services.preprocess_service import insert_into_database, pre_process
 
 # from lib.clean_up import clean_up_folder, clean_up_database
 from services.print_service import print_scores, show_progress
-from services.deepface_service import run_experiment
-from config import MODELS, TRIALS
-from dotenv import load_dotenv
-from lib.generate_random_state import generate_random_state
-import os
 from services.scores_service import calculate_scores
-from lib.download_models import download_models
 
 load_dotenv()
 

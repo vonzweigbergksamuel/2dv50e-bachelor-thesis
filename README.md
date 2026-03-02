@@ -16,3 +16,17 @@ uv sync
 ```bash
 uv run ./src/main.py
 ```
+
+## Lint & Format
+
+1. Lint
+
+```bash
+uvx ruff check
+```
+
+2. Format
+
+```bash
+uvx ruff format
+```
