@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from deepface import DeepFace
 from config import DETECTOR_BACKEND
 
+
 ##############################
 # FOLDERS & FILES
 ##############################
@@ -20,6 +21,8 @@ GOOGLE_SHEET_FILE = "google_sheet.txt"
 UNKNOWN = "Unknown"
 NUMBER_OF_UNKNOWN_IMAGES = 0
 
+#TODO: Sort the os.listdir() output. Sort it so we always get the same order of the directories. Could be fixed. Just validate it
+
 
 def pre_process(dataset_path: pathlib.Path, random_state: int):
     """
@@ -30,21 +33,23 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
     # Create the folders if they don't exist
     os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
 
-    identities = os.listdir(dataset_path)
+    identities = sorted(os.listdir(dataset_path))
 
     # Split the identities into known and unknown
     known, unkown = train_test_split(
         identities, test_size=0.5, train_size=0.5, random_state=random_state
     )
 
-    print(f"Known: {known}")
-    print(f"Unknown: {unkown}")
-
     # Split the known subjects into known and unknown images.
     for subject in known:
         subject_path = dataset_path / subject
 
-        images = os.listdir(subject_path)
+        images = sorted(os.listdir(subject_path))
+        
+        if len(images) < 2:
+            # remove the subject from the known list
+            known.remove(subject)
+            continue
 
         db, test = train_test_split(
             images, test_size=0.5, train_size=0.5, random_state=random_state
@@ -67,7 +72,12 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
     for subject in unkown:
         subject_path = dataset_path / subject
 
-        images = os.listdir(subject_path)
+        images = sorted(os.listdir(subject_path))
+        
+        if len(images) < 2:
+            # remove the subject from the unknown list
+            unkown.remove(subject)
+            continue
 
         _, test = train_test_split(
             images, test_size=0.5, train_size=0.5, random_state=random_state
@@ -79,6 +89,9 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
 
             dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / UNKNOWN
             copy_to_test_subjects_folder(img_path, dest)
+            
+    print(f"Known: {known}")
+    print(f"Unknown: {unkown}")
 
     return img_to_db
 
