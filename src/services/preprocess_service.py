@@ -21,8 +21,6 @@ GOOGLE_SHEET_FILE = "google_sheet.txt"
 UNKNOWN = "Unknown"
 NUMBER_OF_UNKNOWN_IMAGES = 0
 
-#TODO: Sort the os.listdir() output. Sort it so we always get the same order of the directories. Could be fixed. Just validate it
-
 
 def pre_process(dataset_path: pathlib.Path, random_state: int):
     """
