@@ -3,69 +3,18 @@
 #################################
 --------------------------------
 Trial: 1
-Model: ArcFace
-Seed: 674205
+Model: Facenet
+Seed: 42
 Dataset: dataset
 Accuracy: 0.9285714285714286
-Sensitivity: 1.0
-Specificity: 0.8888888888888888
-Precision: 0.8333333333333334
-F1 Score: 0.9090909090909091
-TN: 8
-FP: 1
-FN: 0
-TP: 5
-Avg Time: 3.934912338886837
-Excel format: 5, 0, 1, 8, 674205, 3.934912338886837
---------------------------------
---------------------------------
-Trial: 2
-Model: ArcFace
-Seed: 354685
-Dataset: dataset
-Accuracy: 0.8571428571428571
-Sensitivity: 1.0
-Specificity: 0.75
-Precision: 0.75
-F1 Score: 0.8571428571428571
-TN: 6
-FP: 2
-FN: 0
-TP: 6
-Avg Time: 4.565364515623514
-Excel format: 6, 0, 2, 6, 354685, 4.565364515623514
---------------------------------
---------------------------------
-Trial: 1
-Model: Facenet
-Seed: 674205
-Dataset: dataset
-Accuracy: 1.0
-Sensitivity: 1.0
+Sensitivity: 0.8
 Specificity: 1.0
 Precision: 1.0
-F1 Score: 1.0
+F1 Score: 0.888888888888889
 TN: 9
 FP: 0
-FN: 0
-TP: 5
-Avg Time: 4.27594101250563
-Excel format: 5, 0, 0, 9, 674205, 4.27594101250563
---------------------------------
---------------------------------
-Trial: 2
-Model: Facenet
-Seed: 354685
-Dataset: dataset
-Accuracy: 1.0
-Sensitivity: 1.0
-Specificity: 1.0
-Precision: 1.0
-F1 Score: 1.0
-TN: 8
-FP: 0
-FN: 0
-TP: 6
-Avg Time: 4.080723665629193
-Excel format: 6, 0, 0, 8, 354685, 4.080723665629193
+FN: 1
+TP: 4
+Avg Time: 0.5164347107496118
+Excel format: 4, 1, 0, 9, 42, 0.5164347107496118
 --------------------------------

@@ -1,10 +1,11 @@
 import os
 import pathlib
+
 from dotenv import load_dotenv
+
 from config import MODELS, TRIALS
 from lib.clean_up import clean_up_database, clean_up_folder
 from lib.download_models import download_models
-from lib.generate_random_state import generate_random_state
 from services.deepface_service import run_experiment
 from services.preprocess_service import (
     insert_into_database,
@@ -14,9 +15,9 @@ from services.preprocess_service import (
 from services.print_service import (
     export_to_google_sheet,
     print_scores,
+    save_dataset_to_file,
     save_results_to_file,
     show_progress,
-    save_dataset_to_file,
 )
 from services.scores_service import calculate_scores
 
@@ -39,10 +40,11 @@ def main():
         results = []
         save_dataset_to_file(dataset)
         for index in range(TRIALS):
-            random_state = generate_random_state()
+            # random_seed = generate_random_state()
+            random_seed = 42
             path = data_path / dataset
 
-            images_to_db = pre_process(path, random_state)
+            images_to_db = pre_process(path, random_seed)
 
             for model in MODELS:
                 insert_into_database(images_to_db, model)
@@ -66,7 +68,7 @@ def main():
 
                 scores = {
                     "trial": index + 1,
-                    "seed": random_state,
+                    "seed": random_seed,
                     "model": model,
                     "dataset": dataset,
                     "accuracy": accuracy,

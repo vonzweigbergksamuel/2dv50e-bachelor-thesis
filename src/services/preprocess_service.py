@@ -1,11 +1,12 @@
 # This service is used to preprocess the datasets, ie. split them into training and testing sets.
 import os
-import shutil
 import pathlib
-from sklearn.model_selection import train_test_split
-from deepface import DeepFace
-from config import DETECTOR_BACKEND
+import shutil
 
+from deepface import DeepFace
+from sklearn.model_selection import train_test_split
+
+from config import DETECTOR_BACKEND
 
 ##############################
 # FOLDERS & FILES
@@ -32,6 +33,7 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
     os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
 
     identities = sorted(os.listdir(dataset_path))
+    print(f"Identities: {identities}")
 
     # Split the identities into known and unknown
     known, unkown = train_test_split(
@@ -43,7 +45,8 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
         subject_path = dataset_path / subject
 
         images = sorted(os.listdir(subject_path))
-        
+        print(f"Images: {images}")
+
         if len(images) < 2:
             # remove the subject from the known list
             known.remove(subject)
@@ -71,7 +74,7 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
         subject_path = dataset_path / subject
 
         images = sorted(os.listdir(subject_path))
-        
+
         if len(images) < 2:
             # remove the subject from the unknown list
             unkown.remove(subject)
@@ -87,7 +90,7 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
 
             dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / UNKNOWN
             copy_to_test_subjects_folder(img_path, dest)
-            
+
     print(f"Known: {known}")
     print(f"Unknown: {unkown}")
 

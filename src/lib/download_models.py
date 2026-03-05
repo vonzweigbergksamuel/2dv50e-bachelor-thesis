@@ -1,5 +1,6 @@
 from deepface import DeepFace
-from config import MODELS, DETECTOR_BACKEND
+
+from config import DETECTOR_BACKEND, MODELS
 from services.print_service import show_progress
 
 

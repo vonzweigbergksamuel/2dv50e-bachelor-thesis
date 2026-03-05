@@ -1,10 +1,12 @@
 # This service is used to interface with the DeepFace framework.
 import os
-import time
 import pathlib
+import time
+
 from deepface import DeepFace
+
+from config import DETECTOR_BACKEND, DISTANCE_METRIC
 from services.preprocess_service import TEST_SUBJECTS_FOLDER, UNKNOWN
-from config import DISTANCE_METRIC, DETECTOR_BACKEND
 
 
 def run_experiment(model: str):

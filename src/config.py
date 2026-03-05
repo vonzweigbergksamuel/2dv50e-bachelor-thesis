@@ -1,10 +1,10 @@
 #######################################
 # Configuration
 #######################################
-MODELS = ["Facenet", "ArcFace"]
+MODELS = ["Facenet"]
 
 DETECTOR_BACKEND = "retinaface"
 
 DISTANCE_METRIC = "cosine"
 
-TRIALS = 2
+TRIALS = 1

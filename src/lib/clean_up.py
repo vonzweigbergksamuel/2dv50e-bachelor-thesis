@@ -1,10 +1,11 @@
+import contextlib
 import os
 import shutil
-from services.preprocess_service import TEST_SUBJECTS_FOLDER
-import contextlib
-from sqlalchemy import MetaData
-from sqlalchemy import create_engine
+
 from dotenv import load_dotenv
+from sqlalchemy import MetaData, create_engine
+
+from services.preprocess_service import TEST_SUBJECTS_FOLDER
 
 load_dotenv()
 
