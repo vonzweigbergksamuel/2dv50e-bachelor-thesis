@@ -17,6 +17,12 @@ uv sync
 uv run ./src/main.py
 ```
 
+Start the database
+
+```bash
+docker compose up -d db
+```
+
 ## Lint & Format
 
 1. Lint

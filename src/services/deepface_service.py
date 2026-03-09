@@ -17,6 +17,8 @@ def run_experiment(model: str):
     TEST_SUBJECTS_PATH = project_root / TEST_SUBJECTS_FOLDER
 
     TEST_SUBJECTS = os.listdir(TEST_SUBJECTS_PATH)
+    
+    TEST_SUBJECTS = sorted(TEST_SUBJECTS)
 
     # print(f"TEST_SUBJECTS_IMAGES: {TEST_SUBJECTS}")
 
@@ -25,7 +27,7 @@ def run_experiment(model: str):
     avg_time_per_subject = []
 
     for subject in TEST_SUBJECTS:
-        subject_images = os.listdir(TEST_SUBJECTS_PATH / subject)
+        subject_images = sorted(os.listdir(TEST_SUBJECTS_PATH / subject))
 
         # print(subject_images)
 

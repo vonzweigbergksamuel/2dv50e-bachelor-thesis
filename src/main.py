@@ -1,8 +1,6 @@
 import os
 import pathlib
-
 from dotenv import load_dotenv
-
 from config import MODELS, TRIALS
 from lib.clean_up import clean_up_database, clean_up_folder
 from lib.download_models import download_models
