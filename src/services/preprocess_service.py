@@ -1,137 +1,100 @@
 # This service is used to preprocess the datasets, ie. split them into training and testing sets.
-import os
 import pathlib
-import shutil
+from dataclasses import dataclass
 
-from deepface import DeepFace
 from sklearn.model_selection import train_test_split
 
-from config import DETECTOR_BACKEND
-
-##############################
-# FOLDERS & FILES
-##############################
-TEST_SUBJECTS_FOLDER = "test_subjects"
 RESULTS_FILE = "results.txt"
 GOOGLE_SHEET_FILE = "google_sheet.txt"
 
-
-##############################
-# CONSTANTS
-##############################
 UNKNOWN = "Unknown"
-NUMBER_OF_UNKNOWN_IMAGES = 0
 
 
-def pre_process(dataset_path: pathlib.Path, random_state: int):
+@dataclass(frozen=True)
+class ExperimentImage:
+    path: pathlib.Path
+    label: str
+
+
+@dataclass(frozen=True)
+class ExperimentSplit:
+    db: list[ExperimentImage]
+    test_known: list[ExperimentImage]
+    test_unknown: list[ExperimentImage]
+
+
+def load_dataset(dataset_path: pathlib.Path) -> dict[str, list[pathlib.Path]]:
     """
-    Preprocesses the dataset by splitting it into a known and unknown set.
+    Loads the dataset into a subject -> image paths mapping.
     """
-    img_to_db = []
+    subjects: dict[str, list[pathlib.Path]] = {}
 
-    # Create the folders if they don't exist
-    os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
+    for subject_path in sorted(dataset_path.iterdir()):
+        if not subject_path.is_dir():
+            continue
 
-    identities = sorted(os.listdir(dataset_path))
-    print(f"Identities: {identities}")
+        images = sorted(path for path in subject_path.iterdir() if path.is_file())
+        if images:
+            subjects[subject_path.name] = images
 
-    # Split the identities into known and unknown
-    known, unkown = train_test_split(
-        identities, test_size=0.5, train_size=0.5, random_state=random_state
+    return subjects
+
+
+def pre_process(
+    dataset: dict[str, list[pathlib.Path]], random_state: int
+) -> ExperimentSplit:
+    """
+    Splits the dataset into known DB images and test images.
+    """
+    valid_identities = sorted(
+        subject for subject, images in dataset.items() if len(images) >= 2
     )
 
-    # Split the known subjects into known and unknown images.
-    for subject in known:
-        subject_path = dataset_path / subject
+    if len(valid_identities) < 2:
+        raise ValueError(
+            "Dataset must contain at least two identities with two images."
+        )
 
-        images = sorted(os.listdir(subject_path))
-        print(f"Images: {images}")
+    known_subjects, unknown_subjects = train_test_split(
+        valid_identities, test_size=0.5, train_size=0.5, random_state=random_state
+    )
 
-        if len(images) < 2:
-            # remove the subject from the known list
-            known.remove(subject)
-            continue
+    db_images: list[ExperimentImage] = []
+    test_known_images: list[ExperimentImage] = []
+    test_unknown_images: list[ExperimentImage] = []
 
+    for subject in sorted(known_subjects):
         db, test = train_test_split(
-            images, test_size=0.5, train_size=0.5, random_state=random_state
+            dataset[subject], test_size=0.5, train_size=0.5, random_state=random_state
+        )
+        db_images.extend(
+            ExperimentImage(path=image_path, label=subject) for image_path in db
+        )
+        test_known_images.extend(
+            ExperimentImage(path=image_path, label=subject) for image_path in test
         )
 
-        # Copy the known images to the DB folder
-        for image in db:
-            img_path = subject_path / image
-
-            img_to_db.append({"path": img_path, "name": subject})
-
-        # Copy the known images to the TEST_SUBJECTS folder
-        for image in test:
-            img_path = subject_path / image
-
-            dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / subject
-            copy_to_test_subjects_folder(img_path, dest)
-
-    # Split the unknown subjects into unknown images.
-    for subject in unkown:
-        subject_path = dataset_path / subject
-
-        images = sorted(os.listdir(subject_path))
-
-        if len(images) < 2:
-            # remove the subject from the unknown list
-            unkown.remove(subject)
-            continue
-
+    for subject in sorted(unknown_subjects):
         _, test = train_test_split(
-            images, test_size=0.5, train_size=0.5, random_state=random_state
+            dataset[subject], test_size=0.5, train_size=0.5, random_state=random_state
+        )
+        test_unknown_images.extend(
+            ExperimentImage(path=image_path, label=UNKNOWN) for image_path in test
         )
 
-        # Copy the unknown images to the TEST_SUBJECTS folder
-        for image in test:
-            img_path = subject_path / image
-
-            dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / UNKNOWN
-            copy_to_test_subjects_folder(img_path, dest)
-
-    print(f"Known: {known}")
-    print(f"Unknown: {unkown}")
-
-    return img_to_db
-
-
-def copy_to_test_subjects_folder(src: pathlib.Path, dest_dir: pathlib.Path):
-    """
-    Copies a file to the test subjects folder.
-    """
-    global NUMBER_OF_UNKNOWN_IMAGES
-    NUMBER_OF_UNKNOWN_IMAGES += 1
-
-    os.makedirs(dest_dir, exist_ok=True)
-
-    shutil.copyfile(src, dest_dir / f"{NUMBER_OF_UNKNOWN_IMAGES}{src.suffix}")
-
-
-def insert_into_database(img_to_db: list[dict], model: str):
-    """
-    Inserts the images into the database.
-    """
-    for img in img_to_db:
-        DeepFace.register(
-            img=img["path"],
-            img_name=img["name"],
-            model_name=model,
-            detector_backend=DETECTOR_BACKEND,
-        )
+    return ExperimentSplit(
+        db=db_images,
+        test_known=test_known_images,
+        test_unknown=test_unknown_images,
+    )
 
 
 def set_up_directories():
     """
-    Sets up the directories for the project.
+    Resets the output files for the project.
     """
-    os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
-
-    # Create result file
     with open(RESULTS_FILE, "w", encoding="utf-8") as f:
         f.write("")
 
-    # Create google sheet file
     with open(GOOGLE_SHEET_FILE, "w", encoding="utf-8") as f:
         f.write("")

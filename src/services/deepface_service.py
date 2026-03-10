@@ -1,71 +1,148 @@
 # This service is used to interface with the DeepFace framework.
-import os
 import pathlib
 import time
 
 from deepface import DeepFace
+from deepface.modules import verification
 
 from config import DETECTOR_BACKEND, DISTANCE_METRIC
-from services.preprocess_service import TEST_SUBJECTS_FOLDER, UNKNOWN
+from services.preprocess_service import UNKNOWN, ExperimentImage, ExperimentSplit
 
 
-def run_experiment(model: str):
+def build_embedding_cache(
+    dataset: dict[str, list[pathlib.Path]], model: str
+) -> dict[pathlib.Path, list[float]]:
     """
-    Runs an experiment with the given model and seed.
+    Computes embeddings once for all images in a dataset for a given model.
     """
-    project_root = pathlib.Path(__file__).parent.parent.parent
-    TEST_SUBJECTS_PATH = project_root / TEST_SUBJECTS_FOLDER
+    embeddings: dict[pathlib.Path, list[float]] = {}
 
-    TEST_SUBJECTS = os.listdir(TEST_SUBJECTS_PATH)
-    
-    TEST_SUBJECTS = sorted(TEST_SUBJECTS)
+    for image_paths in dataset.values():
+        for image_path in image_paths:
+            embedding = _extract_embedding(image_path, model)
+            if embedding is not None:
+                embeddings[image_path] = embedding
 
-    # print(f"TEST_SUBJECTS_IMAGES: {TEST_SUBJECTS}")
+    return embeddings
 
-    actual_result = []
-    predicted_result = []
-    avg_time_per_subject = []
 
-    for subject in TEST_SUBJECTS:
-        subject_images = sorted(os.listdir(TEST_SUBJECTS_PATH / subject))
+def run_experiment(
+    model: str,
+    split: ExperimentSplit,
+    embedding_cache: dict[pathlib.Path, list[float]],
+) -> tuple[list[str], list[str], float, float, float]:
+    """
+    Runs an experiment against a trial-specific gallery built from known DB images.
+    """
+    gallery_start = time.perf_counter()
+    gallery_labels, gallery_embeddings = _build_gallery(split.db, embedding_cache)
+    gallery_time = time.perf_counter() - gallery_start
 
-        # print(subject_images)
+    threshold = verification.find_threshold(
+        model_name=model, distance_metric=DISTANCE_METRIC
+    )
 
+    actual_result: list[str] = []
+    predicted_result: list[str] = []
+    avg_time_per_subject: list[float] = []
+
+    grouped_test_images = _group_test_images(split)
+
+    match_start = time.perf_counter()
+    for subject, subject_images in grouped_test_images.items():
         time_per_images = []
 
         for image in subject_images:
             actual_result.append(subject)
 
-            image_path = TEST_SUBJECTS_PATH / subject / image
-
-            start_time = time.perf_counter()
-            search_result = DeepFace.search(
-                img=image_path,
-                model_name=model,
-                distance_metric=DISTANCE_METRIC,
-                detector_backend=DETECTOR_BACKEND,
+            image_start = time.perf_counter()
+            predicted_result.append(
+                _match_image(
+                    image.path,
+                    gallery_labels,
+                    gallery_embeddings,
+                    embedding_cache,
+                    threshold,
+                )
             )
-            end_time = time.perf_counter()
+            time_per_images.append(time.perf_counter() - image_start)
 
-            time_per_images.append(end_time - start_time)
+        if time_per_images:
+            avg_time_per_subject.append(sum(time_per_images) / len(time_per_images))
 
-            # DeepFace.search may return a DataFrame or a list of DataFrames
-            if isinstance(search_result, list):
-                if not search_result:
-                    predicted_result.append(UNKNOWN)
-                    continue
-                df = search_result[0]
-            else:
-                df = search_result
+    match_time = time.perf_counter() - match_start
+    avg_time = (
+        sum(avg_time_per_subject) / len(avg_time_per_subject)
+        if avg_time_per_subject
+        else 0.0
+    )
 
-            if len(df) == 0:
-                predicted_result.append(UNKNOWN)
-            else:
-                top_match = df.iloc[0]
-                predicted_result.append(top_match["img_name"])
+    return actual_result, predicted_result, avg_time, gallery_time, match_time
 
-        avg_time_per_subject.append(sum(time_per_images) / len(time_per_images))
 
-    avg_time = sum(avg_time_per_subject) / len(avg_time_per_subject)
+def _extract_embedding(image_path: pathlib.Path, model: str) -> list[float] | None:
+    try:
+        embedding_objs = DeepFace.represent(
+            img_path=image_path,
+            model_name=model,
+            detector_backend=DETECTOR_BACKEND,
+        )
+    except ValueError:
+        return None
 
-    return actual_result, predicted_result, avg_time
+    if not embedding_objs:
+        return None
+
+    return embedding_objs[0].get("embedding")
+
+
+def _build_gallery(
+    db_images: list[ExperimentImage],
+    embedding_cache: dict[pathlib.Path, list[float]],
+) -> tuple[list[str], list[list[float]]]:
+    gallery_labels: list[str] = []
+    gallery_embeddings: list[list[float]] = []
+
+    for image in db_images:
+        embedding = embedding_cache.get(image.path)
+        if embedding is None:
+            continue
+        gallery_labels.append(image.label)
+        gallery_embeddings.append(embedding)
+
+    return gallery_labels, gallery_embeddings
+
+
+def _group_test_images(split: ExperimentSplit) -> dict[str, list[ExperimentImage]]:
+    grouped_images: dict[str, list[ExperimentImage]] = {}
+
+    for image in [*split.test_known, *split.test_unknown]:
+        grouped_images.setdefault(image.label, []).append(image)
+
+    return dict(sorted(grouped_images.items()))
+
+
+def _match_image(
+    image_path: pathlib.Path,
+    gallery_labels: list[str],
+    gallery_embeddings: list[list[float]],
+    embedding_cache: dict[pathlib.Path, list[float]],
+    threshold: float,
+) -> str:
+    query_embedding = embedding_cache.get(image_path)
+    if query_embedding is None or not gallery_embeddings:
+        return UNKNOWN
+
+    distances = verification.find_distance(
+        [query_embedding], gallery_embeddings, DISTANCE_METRIC
+    )
+    best_index = min(
+        range(len(gallery_labels)),
+        key=lambda index: float(distances[index][0]),
+    )
+    best_distance = float(distances[best_index][0])
+
+    if best_distance <= threshold:
+        return gallery_labels[best_index]
+
+    return UNKNOWN

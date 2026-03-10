@@ -1,20 +1,47 @@
 #################################
-# Dataset: dataset
+# Dataset: LFW
 #################################
 --------------------------------
 Trial: 1
 Model: Facenet
 Seed: 42
-Dataset: dataset
-Accuracy: 0.9285714285714286
-Sensitivity: 0.8
-Specificity: 1.0
-Precision: 1.0
-F1 Score: 0.888888888888889
-TN: 9
-FP: 0
-FN: 1
-TP: 4
-Avg Time: 0.5164347107496118
-Excel format: 4, 1, 0, 9, 42, 0.5164347107496118
+Dataset: LFW
+Accuracy: 0.9125
+Sensitivity: 0.8769230769230769
+Specificity: 0.9463414634146341
+Precision: 0.9395604395604396
+F1 Score: 0.9071618037135278
+TN: 194
+FP: 11
+FN: 24
+TP: 171
+Avg Time: 0.00041919359826290574
+Embedding Cache Time: 292.02135458299017
+Preprocess Time: 0.015856750003877096
+Gallery Build Time: 3.591700806282461e-05
+Search Time: 0.1629419590026373
+Cleanup Time: 0.0
+Excel format: 171, 24, 11, 194, 42, 0.00041919359826290574
+--------------------------------
+--------------------------------
+Trial: 2
+Model: Facenet
+Seed: 42
+Dataset: LFW
+Accuracy: 0.9125
+Sensitivity: 0.8769230769230769
+Specificity: 0.9463414634146341
+Precision: 0.9395604395604396
+F1 Score: 0.9071618037135278
+TN: 194
+FP: 11
+FN: 24
+TP: 171
+Avg Time: 0.00040684559567776186
+Embedding Cache Time: 292.02135458299017
+Preprocess Time: 0.014187041990226135
+Gallery Build Time: 2.0166989997960627e-05
+Search Time: 0.16227779099426698
+Cleanup Time: 0.0
+Excel format: 171, 24, 11, 194, 42, 0.00040684559567776186
 --------------------------------

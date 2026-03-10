@@ -1,12 +1,14 @@
 import os
 import pathlib
+import time
+
 from dotenv import load_dotenv
+
 from config import MODELS, TRIALS
-from lib.clean_up import clean_up_database, clean_up_folder
 from lib.download_models import download_models
-from services.deepface_service import run_experiment
+from services.deepface_service import build_embedding_cache, run_experiment
 from services.preprocess_service import (
-    insert_into_database,
+    load_dataset,
     pre_process,
     set_up_directories,
 )
@@ -25,7 +27,9 @@ load_dotenv()
 def main():
     download_models()
     data_path = pathlib.Path(__file__).parent.parent / "data"
-    datasets = os.listdir(data_path)
+    datasets = sorted(
+        dataset for dataset in os.listdir(data_path) if (data_path / dataset).is_dir()
+    )
 
     set_up_directories()
 
@@ -37,17 +41,29 @@ def main():
     for dataset in datasets:
         results = []
         save_dataset_to_file(dataset)
-        for index in range(TRIALS):
-            # random_seed = generate_random_state()
-            random_seed = 42
-            path = data_path / dataset
+        dataset_path = data_path / dataset
+        dataset_images = load_dataset(dataset_path)
 
-            images_to_db = pre_process(path, random_seed)
+        for model in MODELS:
+            cache_start = time.perf_counter()
+            embedding_cache = build_embedding_cache(dataset_images, model)
+            embedding_cache_time = time.perf_counter() - cache_start
 
-            for model in MODELS:
-                insert_into_database(images_to_db, model)
+            for index in range(TRIALS):
+                # random_seed = generate_random_state()
+                random_seed = 42
 
-                actual, predicted, avg_time = run_experiment(model)
+                preprocess_start = time.perf_counter()
+                split = pre_process(dataset_images, random_seed)
+                preprocess_time = time.perf_counter() - preprocess_start
+
+                (
+                    actual,
+                    predicted,
+                    avg_time,
+                    gallery_build_time,
+                    search_time,
+                ) = run_experiment(model, split, embedding_cache)
 
                 (
                     accuracy,
@@ -60,9 +76,6 @@ def main():
                     fn,
                     tp,
                 ) = calculate_scores(actual, predicted)
-
-                print(f"Actual: {actual}")
-                print(f"Predicted: {predicted}")
 
                 scores = {
                     "trial": index + 1,
@@ -79,6 +92,11 @@ def main():
                     "fn": fn,
                     "tp": tp,
                     "avg_time": avg_time,
+                    "embedding_cache_time": embedding_cache_time,
+                    "preprocess_time": preprocess_time,
+                    "gallery_build_time": gallery_build_time,
+                    "search_time": search_time,
+                    "cleanup_time": 0.0,
                 }
 
                 results.append(scores)
@@ -86,11 +104,7 @@ def main():
                 completed_runs += 1
                 show_progress(completed_runs, total_runs)
 
-                clean_up_database()
-
-            clean_up_folder()
-
-        results.sort(key=lambda x: x["model"])
+        results.sort(key=lambda x: (x["model"], x["trial"]))
         for result in results:
             print_scores(result)
             save_results_to_file(result)

@@ -1,7 +1,9 @@
 import os
+import random
 import shutil
 from pathlib import Path
-import random
+
+IGNORED_FOLDERS = [".DS_Store"]
 
 
 def adapter():
@@ -11,6 +13,9 @@ def adapter():
 
     for folder in folders:
         folder_path = path / folder
+        if folder in IGNORED_FOLDERS or not folder_path.is_dir():
+            continue
+
         subjects = os.listdir(folder_path)
 
         for subject in subjects:

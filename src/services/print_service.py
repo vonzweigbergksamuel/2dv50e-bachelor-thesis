@@ -29,6 +29,11 @@ def print_scores(scores: dict):
     print("FN: ", scores["fn"])
     print("TP: ", scores["tp"])
     print("Avg Time: ", scores["avg_time"])
+    print("Embedding Cache Time: ", scores["embedding_cache_time"])
+    print("Preprocess Time: ", scores["preprocess_time"])
+    print("Gallery Build Time: ", scores["gallery_build_time"])
+    print("Search Time: ", scores["search_time"])
+    print("Cleanup Time: ", scores["cleanup_time"])
     print("--------------------------------")
 
 
@@ -74,27 +79,30 @@ def save_results_to_file(scores: dict):
         f.write(f"FN: {scores['fn']}\n")
         f.write(f"TP: {scores['tp']}\n")
         f.write(f"Avg Time: {scores['avg_time']}\n")
+        f.write(f"Embedding Cache Time: {scores['embedding_cache_time']}\n")
+        f.write(f"Preprocess Time: {scores['preprocess_time']}\n")
+        f.write(f"Gallery Build Time: {scores['gallery_build_time']}\n")
+        f.write(f"Search Time: {scores['search_time']}\n")
+        f.write(f"Cleanup Time: {scores['cleanup_time']}\n")
         f.write(
             f"Excel format: {scores['tp']}, {scores['fn']}, {scores['fp']}, {scores['tn']}, {scores['seed']}, {scores['avg_time']}\n"
         )
         f.write("--------------------------------\n")
 
 
-def export_to_google_sheet(scores: dict):
+def export_to_google_sheet(scores: list[dict]):
     """
     Exports the results to a google sheet.
     """
     LAST_MODEL = ""
-
-    for score in scores:
-        if score["model"] != LAST_MODEL:
-            LAST_MODEL = score["model"]
-            with open(GOOGLE_SHEET_FILE, "a", encoding="utf-8") as f:
+    with open(GOOGLE_SHEET_FILE, "a", encoding="utf-8") as f:
+        for score in scores:
+            if score["model"] != LAST_MODEL:
+                LAST_MODEL = score["model"]
                 f.write("--------------------------------\n")
                 f.write(f"- Model: {LAST_MODEL}\n")
                 f.write("--------------------------------\n")
 
-        with open(GOOGLE_SHEET_FILE, "a", encoding="utf-8") as f:
             f.write(
                 f"{score['tp']}, {score['fn']}, {score['fp']}, {score['tn']}, {score['seed']}, {score['avg_time']}\n"
             )
