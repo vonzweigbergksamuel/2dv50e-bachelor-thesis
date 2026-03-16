@@ -40,6 +40,9 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
         identities, test_size=0.5, train_size=0.5, random_state=random_state
     )
 
+    filtered_known = []
+    filtered_unkown = []
+
     # Split the known subjects into known and unknown images.
     for subject in known:
         subject_path = dataset_path / subject
@@ -49,8 +52,10 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
 
         if len(images) < 2:
             # remove the subject from the known list
-            known.remove(subject)
+            # known.remove(subject)
             continue
+
+        filtered_known.append(subject)
 
         db, test = train_test_split(
             images, test_size=0.5, train_size=0.5, random_state=random_state
@@ -77,8 +82,10 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
 
         if len(images) < 2:
             # remove the subject from the unknown list
-            unkown.remove(subject)
+            # unkown.remove(subject)
             continue
+
+        filtered_unkown.append(subject)
 
         _, test = train_test_split(
             images, test_size=0.5, train_size=0.5, random_state=random_state
@@ -91,8 +98,8 @@ def pre_process(dataset_path: pathlib.Path, random_state: int):
             dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / UNKNOWN
             copy_to_test_subjects_folder(img_path, dest)
 
-    print(f"Known: {known}")
-    print(f"Unknown: {unkown}")
+    print(f"Known: {filtered_known}")
+    print(f"Unknown: {filtered_unkown}")
 
     return img_to_db
 
@@ -113,7 +120,10 @@ def insert_into_database(img_to_db: list[dict], model: str):
     """
     Inserts the images into the database.
     """
+    completed_images = 0
     for img in img_to_db:
+        completed_images += 1
+        print(f"Completed {completed_images} of {len(img_to_db)} images")
         DeepFace.register(
             img=img["path"],
             img_name=img["name"],

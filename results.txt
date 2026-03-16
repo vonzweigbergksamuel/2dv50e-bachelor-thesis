@@ -1,20 +1,37 @@
 #################################
-# Dataset: dataset
+# Dataset: LFW
 #################################
+--------------------------------
+Trial: 1
+Model: ArcFace
+Seed: 42
+Dataset: LFW
+Accuracy: 0.6975
+Sensitivity: 0.9435897435897436
+Specificity: 0.4634146341463415
+Precision: 0.6258503401360545
+F1 Score: 0.7525562372188139
+TN: 95
+FP: 110
+FN: 11
+TP: 184
+Avg Time: 1.0915748057030323
+Excel format: 184, 11, 110, 95, 42, 1.0915748057030323
+--------------------------------
 --------------------------------
 Trial: 1
 Model: Facenet
 Seed: 42
-Dataset: dataset
-Accuracy: 0.9285714285714286
-Sensitivity: 0.8
-Specificity: 1.0
-Precision: 1.0
-F1 Score: 0.888888888888889
-TN: 9
-FP: 0
-FN: 1
-TP: 4
-Avg Time: 0.5164347107496118
-Excel format: 4, 1, 0, 9, 42, 0.5164347107496118
+Dataset: LFW
+Accuracy: 0.9025
+Sensitivity: 0.882051282051282
+Specificity: 0.9219512195121952
+Precision: 0.9148936170212766
+F1 Score: 0.8981723237597912
+TN: 189
+FP: 16
+FN: 23
+TP: 172
+Avg Time: 1.05135803793507
+Excel format: 172, 23, 16, 189, 42, 1.05135803793507
 --------------------------------

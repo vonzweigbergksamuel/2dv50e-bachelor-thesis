@@ -1,7 +1,7 @@
 #######################################
 # Configuration
 #######################################
-MODELS = ["Facenet"]
+MODELS = ["Facenet", "ArcFace"]
 
 DETECTOR_BACKEND = "retinaface"
 

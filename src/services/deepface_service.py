@@ -17,8 +17,10 @@ def run_experiment(model: str):
     TEST_SUBJECTS_PATH = project_root / TEST_SUBJECTS_FOLDER
 
     TEST_SUBJECTS = os.listdir(TEST_SUBJECTS_PATH)
-    
+
     TEST_SUBJECTS = sorted(TEST_SUBJECTS)
+
+    COMPLETED_SUBJECTS = 0
 
     # print(f"TEST_SUBJECTS_IMAGES: {TEST_SUBJECTS}")
 
@@ -32,6 +34,8 @@ def run_experiment(model: str):
         # print(subject_images)
 
         time_per_images = []
+
+        unknown_completed_images = 0
 
         for image in subject_images:
             actual_result.append(subject)
@@ -49,6 +53,12 @@ def run_experiment(model: str):
 
             time_per_images.append(end_time - start_time)
 
+            if subject == UNKNOWN:
+                unknown_completed_images += 1
+                print(
+                    f"Completed {unknown_completed_images} of {len(subject_images)} unknown images"
+                )
+
             # DeepFace.search may return a DataFrame or a list of DataFrames
             if isinstance(search_result, list):
                 if not search_result:
@@ -63,6 +73,9 @@ def run_experiment(model: str):
             else:
                 top_match = df.iloc[0]
                 predicted_result.append(top_match["img_name"])
+
+        COMPLETED_SUBJECTS += 1
+        print(f"Completed {COMPLETED_SUBJECTS} of {len(TEST_SUBJECTS)} subjects")
 
         avg_time_per_subject.append(sum(time_per_images) / len(time_per_images))
 
