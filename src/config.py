@@ -5,6 +5,7 @@ MODELS = ["Facenet", "ArcFace"]
 
 DETECTOR_BACKEND = "retinaface"
 
-DISTANCE_METRIC = "cosine"
+TRIALS = 4
 
-TRIALS = 1
+RESULTS_FILE = "results.txt"
+GOOGLE_SHEET_FILE = "google_sheet.txt"

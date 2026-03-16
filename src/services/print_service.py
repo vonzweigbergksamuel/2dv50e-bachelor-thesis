@@ -3,7 +3,7 @@ import os
 
 from dotenv import load_dotenv
 
-from services.preprocess_service import GOOGLE_SHEET_FILE, RESULTS_FILE
+from config import GOOGLE_SHEET_FILE, RESULTS_FILE
 
 load_dotenv()
 GOOGLE_SHEET_ID = os.getenv("GOOGLE")
@@ -32,11 +32,11 @@ def print_scores(scores: dict):
     print("--------------------------------")
 
 
-def show_progress(current: int, total: int):
+def show_progress(task: str, current: int, total: int):
     """
     Shows the progress of the preprocesssing.
     """
-    print(f"Progress: {int(current / total * 100)}%")
+    print(f"{task} Progress: {float(current / total * 100)}%")
 
 
 def save_dataset_to_file(dataset_name: str):
@@ -54,14 +54,14 @@ def save_dataset_to_file(dataset_name: str):
         f.write("#################################\n")
 
 
-def save_results_to_file(scores: dict):
+def save_results_to_file(scores: dict, model: str):
     """
     Saves the results to a file.
     """
     with open(RESULTS_FILE, "a", encoding="utf-8") as f:
         f.write("--------------------------------\n")
         f.write(f"Trial: {scores['trial']}\n")
-        f.write(f"Model: {scores['model']}\n")
+        f.write(f"Model: {model}\n")
         f.write(f"Seed: {scores['seed']}\n")
         f.write(f"Dataset: {scores['dataset']}\n")
         f.write(f"Accuracy: {scores['accuracy']}\n")
@@ -79,22 +79,27 @@ def save_results_to_file(scores: dict):
         )
         f.write("--------------------------------\n")
 
+def export_model_to_google_sheet(model: str):
+    """
+    Exports the model to a google sheet.
+    """
+    with open(GOOGLE_SHEET_FILE, "a", encoding="utf-8") as f:
+        f.write("--------------------------------\n")
+        f.write(f"- Model: {model}\n")
+        f.write("--------------------------------\n")
 
-def export_to_google_sheet(scores: dict):
+def export_to_google_sheet(score: dict):
     """
     Exports the results to a google sheet.
     """
-    LAST_MODEL = ""
+    with open(GOOGLE_SHEET_FILE, "a", encoding="utf-8") as f:
+        f.write(
+            f"{score['tp']}, {score['fn']}, {score['fp']}, {score['tn']}, {score['seed']}, {score['avg_time']}\n"
+        )
 
-    for score in scores:
-        if score["model"] != LAST_MODEL:
-            LAST_MODEL = score["model"]
-            with open(GOOGLE_SHEET_FILE, "a", encoding="utf-8") as f:
-                f.write("--------------------------------\n")
-                f.write(f"- Model: {LAST_MODEL}\n")
-                f.write("--------------------------------\n")
 
-        with open(GOOGLE_SHEET_FILE, "a", encoding="utf-8") as f:
-            f.write(
-                f"{score['tp']}, {score['fn']}, {score['fp']}, {score['tn']}, {score['seed']}, {score['avg_time']}\n"
-            )
+def print_current_status(msg: str):
+    """
+    Prints the current status of the task.
+    """
+    print(f"{msg}")

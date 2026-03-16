@@ -1,19 +1,12 @@
 # This service is used to preprocess the datasets, ie. split them into training and testing sets.
 import os
 import pathlib
-import shutil
+import time
 
 from deepface import DeepFace
-from sklearn.model_selection import train_test_split
 
-from config import DETECTOR_BACKEND
-
-##############################
-# FOLDERS & FILES
-##############################
-TEST_SUBJECTS_FOLDER = "test_subjects"
-RESULTS_FILE = "results.txt"
-GOOGLE_SHEET_FILE = "google_sheet.txt"
+from config import DETECTOR_BACKEND, RESULTS_FILE, GOOGLE_SHEET_FILE
+from services.print_service import show_progress
 
 
 ##############################
@@ -23,121 +16,49 @@ UNKNOWN = "Unknown"
 NUMBER_OF_UNKNOWN_IMAGES = 0
 
 
-def pre_process(dataset_path: pathlib.Path, random_state: int):
+def pre_process(dataset_path: pathlib.Path, model: str):
     """
     Preprocesses the dataset by splitting it into a known and unknown set.
     """
-    img_to_db = []
-
-    # Create the folders if they don't exist
-    os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
+    all_subjects = []
+    time_per_run = []
 
     identities = sorted(os.listdir(dataset_path))
-    print(f"Identities: {identities}")
-
-    # Split the identities into known and unknown
-    known, unkown = train_test_split(
-        identities, test_size=0.5, train_size=0.5, random_state=random_state
-    )
-
-    filtered_known = []
-    filtered_unkown = []
-
-    # Split the known subjects into known and unknown images.
-    for subject in known:
-        subject_path = dataset_path / subject
-
-        images = sorted(os.listdir(subject_path))
-        print(f"Images: {images}")
-
+    
+    completed_identities = 0
+    
+    for identity in identities:
+        identity_path = dataset_path / identity
+        images = sorted(os.listdir(identity_path))
+        
         if len(images) < 2:
-            # remove the subject from the known list
-            # known.remove(subject)
             continue
-
-        filtered_known.append(subject)
-
-        db, test = train_test_split(
-            images, test_size=0.5, train_size=0.5, random_state=random_state
-        )
-
-        # Copy the known images to the DB folder
-        for image in db:
-            img_path = subject_path / image
-
-            img_to_db.append({"path": img_path, "name": subject})
-
-        # Copy the known images to the TEST_SUBJECTS folder
-        for image in test:
-            img_path = subject_path / image
-
-            dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / subject
-            copy_to_test_subjects_folder(img_path, dest)
-
-    # Split the unknown subjects into unknown images.
-    for subject in unkown:
-        subject_path = dataset_path / subject
-
-        images = sorted(os.listdir(subject_path))
-
-        if len(images) < 2:
-            # remove the subject from the unknown list
-            # unkown.remove(subject)
-            continue
-
-        filtered_unkown.append(subject)
-
-        _, test = train_test_split(
-            images, test_size=0.5, train_size=0.5, random_state=random_state
-        )
-
-        # Copy the unknown images to the TEST_SUBJECTS folder
-        for image in test:
-            img_path = subject_path / image
-
-            dest = dataset_path.parent.parent / TEST_SUBJECTS_FOLDER / UNKNOWN
-            copy_to_test_subjects_folder(img_path, dest)
-
-    print(f"Known: {filtered_known}")
-    print(f"Unknown: {filtered_unkown}")
-
-    return img_to_db
-
-
-def copy_to_test_subjects_folder(src: pathlib.Path, dest_dir: pathlib.Path):
-    """
-    Copies a file to the test subjects folder.
-    """
-    global NUMBER_OF_UNKNOWN_IMAGES
-    NUMBER_OF_UNKNOWN_IMAGES += 1
-
-    os.makedirs(dest_dir, exist_ok=True)
-
-    shutil.copyfile(src, dest_dir / f"{NUMBER_OF_UNKNOWN_IMAGES}{src.suffix}")
-
-
-def insert_into_database(img_to_db: list[dict], model: str):
-    """
-    Inserts the images into the database.
-    """
-    completed_images = 0
-    for img in img_to_db:
-        completed_images += 1
-        print(f"Completed {completed_images} of {len(img_to_db)} images")
-        DeepFace.register(
-            img=img["path"],
-            img_name=img["name"],
-            model_name=model,
-            detector_backend=DETECTOR_BACKEND,
-        )
+        
+        embedded_images = []
+        for image in images:
+            image_path = identity_path / image
+            start_time = time.perf_counter()
+            embedded_image = DeepFace.represent(img_path=image_path, model_name=model, detector_backend=DETECTOR_BACKEND)
+            end_time = time.perf_counter()
+            time_per_run.append(end_time - start_time)
+            
+            embedded_images.append(embedded_image[0]["embedding"])
+        
+        all_subjects.append({"identity": identity, "images": embedded_images})
+        
+        completed_identities += 1
+        show_progress("Preprocessing", completed_identities, len(identities))
+        
+    
+    avg_time_per_embedding = sum(time_per_run) / len(time_per_run)
+    
+    return all_subjects, avg_time_per_embedding    
 
 
 def set_up_directories():
     """
     Sets up the directories for the project.
     """
-    os.makedirs(TEST_SUBJECTS_FOLDER, exist_ok=True)
-
     # Create result file
     with open(RESULTS_FILE, "w", encoding="utf-8") as f:
         f.write("")

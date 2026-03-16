@@ -1,37 +1,278 @@
 #################################
+# Dataset: dataset
+#################################
+--------------------------------
+Trial: 1
+Model: Facenet
+Seed: 103916
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 7
+FP: 0
+FN: 0
+TP: 5
+Avg Time: 1.564986048000028
+Excel format: 5, 0, 0, 7, 103916, 1.564986048000028
+--------------------------------
+--------------------------------
+Trial: 2
+Model: Facenet
+Seed: 655746
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 0.8571428571428571
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.923076923076923
+TN: 6
+FP: 0
+FN: 1
+TP: 6
+Avg Time: 1.564986048000028
+Excel format: 6, 1, 0, 6, 655746, 1.564986048000028
+--------------------------------
+--------------------------------
+Trial: 3
+Model: Facenet
+Seed: 84757
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 6
+Avg Time: 1.564986048000028
+Excel format: 6, 0, 0, 6, 84757, 1.564986048000028
+--------------------------------
+--------------------------------
+Trial: 4
+Model: Facenet
+Seed: 219036
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 6
+Avg Time: 1.564986048000028
+Excel format: 6, 0, 0, 6, 219036, 1.564986048000028
+--------------------------------
+--------------------------------
+Trial: 1
+Model: ArcFace
+Seed: 103916
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 1.0
+Specificity: 0.8571428571428571
+Precision: 0.8333333333333334
+F1 Score: 0.9090909090909091
+TN: 6
+FP: 1
+FN: 0
+TP: 5
+Avg Time: 1.4988048960000016
+Excel format: 5, 0, 1, 6, 103916, 1.4988048960000016
+--------------------------------
+--------------------------------
+Trial: 2
+Model: ArcFace
+Seed: 655746
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 1.4988048960000016
+Excel format: 7, 0, 0, 6, 655746, 1.4988048960000016
+--------------------------------
+--------------------------------
+Trial: 3
+Model: ArcFace
+Seed: 84757
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 1.0
+Specificity: 0.8333333333333334
+Precision: 0.8571428571428571
+F1 Score: 0.923076923076923
+TN: 5
+FP: 1
+FN: 0
+TP: 6
+Avg Time: 1.4988048960000016
+Excel format: 6, 0, 1, 5, 84757, 1.4988048960000016
+--------------------------------
+--------------------------------
+Trial: 4
+Model: ArcFace
+Seed: 219036
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 6
+Avg Time: 1.4988048960000016
+Excel format: 6, 0, 0, 6, 219036, 1.4988048960000016
+--------------------------------
+#################################
 # Dataset: LFW
 #################################
 --------------------------------
 Trial: 1
-Model: ArcFace
-Seed: 42
+Model: Facenet
+Seed: 29442
 Dataset: LFW
-Accuracy: 0.6975
-Sensitivity: 0.9435897435897436
-Specificity: 0.4634146341463415
-Precision: 0.6258503401360545
-F1 Score: 0.7525562372188139
-TN: 95
-FP: 110
-FN: 11
-TP: 184
-Avg Time: 1.0915748057030323
-Excel format: 184, 11, 110, 95, 42, 1.0915748057030323
+Accuracy: 0.899736147757256
+Sensitivity: 0.898936170212766
+Specificity: 0.900523560209424
+Precision: 0.898936170212766
+F1 Score: 0.898936170212766
+TN: 172
+FP: 19
+FN: 19
+TP: 169
+Avg Time: 2.3047910101986733
+Excel format: 169, 19, 19, 172, 29442, 2.3047910101986733
+--------------------------------
+--------------------------------
+Trial: 2
+Model: Facenet
+Seed: 520720
+Dataset: LFW
+Accuracy: 0.9110512129380054
+Sensitivity: 0.9040590405904059
+Specificity: 0.93
+Precision: 0.9722222222222222
+F1 Score: 0.9369024856596557
+TN: 93
+FP: 7
+FN: 26
+TP: 245
+Avg Time: 2.3047910101986733
+Excel format: 245, 26, 7, 93, 520720, 2.3047910101986733
+--------------------------------
+--------------------------------
+Trial: 3
+Model: Facenet
+Seed: 393555
+Dataset: LFW
+Accuracy: 0.9226666666666666
+Sensitivity: 0.9152542372881356
+Specificity: 0.9292929292929293
+Precision: 0.9204545454545454
+F1 Score: 0.9178470254957507
+TN: 184
+FP: 14
+FN: 15
+TP: 162
+Avg Time: 2.3047910101986733
+Excel format: 162, 15, 14, 184, 393555, 2.3047910101986733
+--------------------------------
+--------------------------------
+Trial: 4
+Model: Facenet
+Seed: 163774
+Dataset: LFW
+Accuracy: 0.9023746701846965
+Sensitivity: 0.8930232558139535
+Specificity: 0.9146341463414634
+Precision: 0.9320388349514563
+F1 Score: 0.9121140142517814
+TN: 150
+FP: 14
+FN: 23
+TP: 192
+Avg Time: 2.3047910101986733
+Excel format: 192, 23, 14, 150, 163774, 2.3047910101986733
 --------------------------------
 --------------------------------
 Trial: 1
-Model: Facenet
-Seed: 42
+Model: ArcFace
+Seed: 29442
 Dataset: LFW
-Accuracy: 0.9025
-Sensitivity: 0.882051282051282
-Specificity: 0.9219512195121952
-Precision: 0.9148936170212766
-F1 Score: 0.8981723237597912
-TN: 189
-FP: 16
-FN: 23
-TP: 172
-Avg Time: 1.05135803793507
-Excel format: 172, 23, 16, 189, 42, 1.05135803793507
+Accuracy: 0.7097625329815304
+Sensitivity: 0.9468085106382979
+Specificity: 0.47643979057591623
+Precision: 0.6402877697841727
+F1 Score: 0.7639484978540773
+TN: 91
+FP: 100
+FN: 10
+TP: 178
+Avg Time: 7.43248109456953
+Excel format: 178, 10, 100, 91, 29442, 7.43248109456953
+--------------------------------
+--------------------------------
+Trial: 2
+Model: ArcFace
+Seed: 520720
+Dataset: LFW
+Accuracy: 0.8194070080862533
+Sensitivity: 0.948339483394834
+Specificity: 0.47
+Precision: 0.8290322580645161
+F1 Score: 0.8846815834767642
+TN: 47
+FP: 53
+FN: 14
+TP: 257
+Avg Time: 7.43248109456953
+Excel format: 257, 14, 53, 47, 520720, 7.43248109456953
+--------------------------------
+--------------------------------
+Trial: 3
+Model: ArcFace
+Seed: 393555
+Dataset: LFW
+Accuracy: 0.6666666666666666
+Sensitivity: 0.9265536723163842
+Specificity: 0.43434343434343436
+Precision: 0.5942028985507246
+F1 Score: 0.7240618101545253
+TN: 86
+FP: 112
+FN: 13
+TP: 164
+Avg Time: 7.43248109456953
+Excel format: 164, 13, 112, 86, 393555, 7.43248109456953
+--------------------------------
+--------------------------------
+Trial: 4
+Model: ArcFace
+Seed: 163774
+Dataset: LFW
+Accuracy: 0.741424802110818
+Sensitivity: 0.958139534883721
+Specificity: 0.4573170731707317
+Precision: 0.6983050847457627
+F1 Score: 0.807843137254902
+TN: 75
+FP: 89
+FN: 9
+TP: 206
+Avg Time: 7.43248109456953
+Excel format: 206, 9, 89, 75, 163774, 7.43248109456953
 --------------------------------

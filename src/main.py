@@ -4,22 +4,25 @@ import pathlib
 from dotenv import load_dotenv
 
 from config import MODELS, TRIALS
-from lib.clean_up import clean_up_database, clean_up_folder
 from lib.download_models import download_models
-from services.deepface_service import run_experiment
+from lib.generate_random_state import get_random_seeds
+from services import database_service
+from services.experiment import run_experiment
 from services.preprocess_service import (
-    insert_into_database,
     pre_process,
     set_up_directories,
 )
 from services.print_service import (
     export_to_google_sheet,
+    export_model_to_google_sheet,
+    print_current_status,
     print_scores,
     save_dataset_to_file,
     save_results_to_file,
     show_progress,
 )
 from services.scores_service import calculate_scores
+from services.splitting_service import splitting_service
 
 load_dotenv()
 
@@ -30,26 +33,33 @@ def main():
     datasets = os.listdir(data_path)
 
     set_up_directories()
-
-    total_runs = len(datasets) * TRIALS * len(MODELS)
-    completed_runs = 0
-
-    print("Running experiments")
+    
+    completed_datasets = 0
 
     for dataset in datasets:
-        results = []
+        print_current_status(f"Processing dataset: {dataset}")
+        path = data_path / dataset
         save_dataset_to_file(dataset)
-        for index in range(TRIALS):
-            # random_seed = generate_random_state()
-            random_seed = 42
-            path = data_path / dataset
+        seeds = get_random_seeds(TRIALS)
+        
+        completed_models = 0
 
-            images_to_db = pre_process(path, random_seed)
+        for model in MODELS:
+            print_current_status(f"Processing model: {model}")
+            export_model_to_google_sheet(model)
+            subjects, avg_time_per_embedding = pre_process(path, model)
 
-            for model in MODELS:
-                insert_into_database(images_to_db, model)
+            for trial, seed in enumerate(seeds):
+                known_subjects, unknown_subjects = splitting_service(subjects, seed)
 
-                actual, predicted, avg_time = run_experiment(model)
+                for subject in known_subjects:
+                    database_service.insert_subject(
+                        subject["identity"], subject["known_images"]
+                    )
+
+                actual, predicted = run_experiment(
+                    model, known_subjects, unknown_subjects
+                )
 
                 (
                     accuracy,
@@ -63,12 +73,9 @@ def main():
                     tp,
                 ) = calculate_scores(actual, predicted)
 
-                print(f"Actual: {actual}")
-                print(f"Predicted: {predicted}")
-
                 scores = {
-                    "trial": index + 1,
-                    "seed": random_seed,
+                    "trial": trial + 1,
+                    "seed": seed,
                     "model": model,
                     "dataset": dataset,
                     "accuracy": accuracy,
@@ -80,24 +87,24 @@ def main():
                     "fp": fp,
                     "fn": fn,
                     "tp": tp,
-                    "avg_time": avg_time,
+                    "avg_time": avg_time_per_embedding,
                 }
 
-                results.append(scores)
+                print_scores(scores)
 
-                completed_runs += 1
-                show_progress(completed_runs, total_runs)
+                save_results_to_file(scores, model)
 
-                clean_up_database()
+                export_to_google_sheet(scores)
 
-            clean_up_folder()
+                database_service.clear_database()
 
-        results.sort(key=lambda x: x["model"])
-        for result in results:
-            print_scores(result)
-            save_results_to_file(result)
+            completed_models += 1
+            show_progress("Models", completed_models, len(MODELS))
 
-        export_to_google_sheet(results)
+        completed_datasets += 1
+        show_progress("Datasets", completed_datasets, len(datasets))
+        
+    print_current_status("Experiment completed!")
 
 
 if __name__ == "__main__":

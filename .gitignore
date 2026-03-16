@@ -5,6 +5,7 @@ build/
 dist/
 wheels/
 *.egg-info
+.ruff_cache/
 
 # Virtual environments
 .venv
@@ -19,3 +20,4 @@ data/
 db/
 
 test_subjects/
+LFW/
