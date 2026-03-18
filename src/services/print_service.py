@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 from config import GOOGLE_SHEET_FILE, RESULTS_FILE
 
 load_dotenv()
-GOOGLE_SHEET_ID = os.getenv("GOOGLE")
 
 
 def print_scores(scores: dict):
@@ -36,7 +35,8 @@ def show_progress(task: str, current: int, total: int):
     """
     Shows the progress of the preprocesssing.
     """
-    print(f"{task} Progress: {float(current / total * 100)}%")
+    percentage = float(current / total * 100)
+    print(f"{task} Progress: {round(percentage, 2)}%")
 
 
 def save_dataset_to_file(dataset_name: str):
