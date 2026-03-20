@@ -13,7 +13,6 @@ from services.print_service import show_progress
 # CONSTANTS
 ##############################
 UNKNOWN = "Unknown"
-NUMBER_OF_UNKNOWN_IMAGES = 0
 
 
 def pre_process(dataset_path: pathlib.Path, model: str):

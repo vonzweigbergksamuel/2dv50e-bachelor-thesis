@@ -1,6 +1,4 @@
 # This service is used to print the results of the model to the console.
-import os
-
 from dotenv import load_dotenv
 
 from config import GOOGLE_SHEET_FILE, RESULTS_FILE

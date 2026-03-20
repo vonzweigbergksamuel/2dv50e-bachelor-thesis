@@ -7,6 +7,9 @@ from services.preprocess_service import UNKNOWN
 
 
 def run_experiment(model: str, known_subjects: list[dict], unknown_subjects: list[dict]):
+    """
+    Runs the experiment for a given model, known subjects and unknown subjects.
+    """
     db_subjects = database_service.get_all_subjects()
     threshold = find_threshold(model, "cosine")
 
