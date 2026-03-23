@@ -23,8 +23,6 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: deepface
     restart: unless-stopped
-    volumes:
-      - deepface-db-data:/var/lib/postgresql
     healthcheck:
       test:
         [
@@ -40,6 +38,3 @@ services:
 networks:
   deepface-network:
     driver: bridge
-
-volumes:
-  deepface-db-data:
