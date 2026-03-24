@@ -1,5 +1,6 @@
 import os
 import pathlib
+import time
 
 from dotenv import load_dotenv
 
@@ -45,6 +46,7 @@ def main():
         completed_models = 0
 
         for model in MODELS:
+            start_time = time.perf_counter()
             print_current_status(f"Processing model: {model}")
             export_model_to_google_sheet(model)
             subjects, avg_time_per_embedding = pre_process(path, model)
@@ -100,6 +102,9 @@ def main():
 
             completed_models += 1
             show_progress("Models", completed_models, len(MODELS))
+            
+            end_time = time.perf_counter()
+            print(f"Time taken for model {model}: {end_time - start_time} seconds")
 
         completed_datasets += 1
         show_progress("Datasets", completed_datasets, len(datasets))

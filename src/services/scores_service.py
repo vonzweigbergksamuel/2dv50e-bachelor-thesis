@@ -17,27 +17,32 @@ from services.preprocess_service import UNKNOWN
 
 def calculate_accuracy(tp: int, tn: int, fp: int, fn: int) -> float:
     """Calculates the percentage of correct predictions."""
-    return (tp + tn) / (tp + tn + fp + fn)
+    total = tp + tn + fp + fn
+    return (tp + tn) / total if total else 0.0
 
 
 def calculate_sensitivity(tp: int, fn: int) -> float:
     """Calculates the percentage of correct predictions when the person actually exists."""
-    return tp / (tp + fn)
+    total = tp + fn
+    return tp / total if total else 0.0
 
 
 def calculate_specificity(tn: int, fp: int) -> float:
     """Calculates the percentage of correct predictions when the person doesn't exist in the training set."""
-    return tn / (tn + fp)
+    total = tn + fp
+    return tn / total if total else 0.0
 
 
 def calculate_precision(tp: int, fp: int) -> float:
     """Calculates the percentage of correct predictions when the model predicts a person."""
-    return tp / (tp + fp)
+    total = tp + fp
+    return tp / total if total else 0.0
 
 
 def calculate_f1_score(precision: float, sensitivity: float) -> float:
     """Calculates the harmonic mean of precision and sensitivity."""
-    return 2 * (precision * sensitivity) / (precision + sensitivity)
+    total = precision + sensitivity
+    return 2 * (precision * sensitivity) / total if total else 0.0
 
 
 def calculate_confusion_matrix(

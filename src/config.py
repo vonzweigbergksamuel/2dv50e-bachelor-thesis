@@ -2,7 +2,13 @@
 # Configuration
 #######################################
 # Models to benchmark
-MODELS = ["Facenet", "ArcFace"]
+# MODELS = ["Facenet"]
+MODELS = [
+    "VGG-Face", "Facenet", "Facenet512", "OpenFace",
+    "DeepID", "ArcFace", "SFace", "GhostFaceNet",
+    "Buffalo_L",
+]
+# DeepFace, Dlib
 
 # The face detector model to be used
 DETECTOR_BACKEND = "retinaface"
