@@ -3,8 +3,59 @@
 #################################
 --------------------------------
 Trial: 1
-Model: Facenet
-Seed: 52223
+Model: VGG-Face
+Seed: 709505
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 5
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 1.96113729199511
+Excel format: 7, 0, 0, 5, 709505, 1.96113729199511
+--------------------------------
+--------------------------------
+Trial: 2
+Model: VGG-Face
+Seed: 64890
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 1.0
+Specificity: 0.8333333333333334
+Precision: 0.8571428571428571
+F1 Score: 0.923076923076923
+TN: 5
+FP: 1
+FN: 0
+TP: 6
+Avg Time: 1.96113729199511
+Excel format: 6, 0, 1, 5, 64890, 1.96113729199511
+--------------------------------
+--------------------------------
+Trial: 3
+Model: VGG-Face
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 0.875
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.9333333333333333
+TN: 5
+FP: 0
+FN: 1
+TP: 7
+Avg Time: 1.96113729199511
+Excel format: 7, 1, 0, 5, 903916, 1.96113729199511
+--------------------------------
+--------------------------------
+Trial: 4
+Model: VGG-Face
+Seed: 165554
 Dataset: dataset
 Accuracy: 0.9230769230769231
 Sensitivity: 0.8333333333333334
@@ -15,13 +66,13 @@ TN: 7
 FP: 0
 FN: 1
 TP: 5
-Avg Time: 1.9767347639985382
-Excel format: 5, 1, 0, 7, 52223, 1.9767347639985382
+Avg Time: 1.96113729199511
+Excel format: 5, 1, 0, 7, 165554, 1.96113729199511
 --------------------------------
 --------------------------------
-Trial: 2
-Model: Facenet
-Seed: 527587
+Trial: 5
+Model: VGG-Face
+Seed: 670686
 Dataset: dataset
 Accuracy: 0.9230769230769231
 Sensitivity: 0.8571428571428571
@@ -32,64 +83,13 @@ TN: 6
 FP: 0
 FN: 1
 TP: 6
-Avg Time: 1.9767347639985382
-Excel format: 6, 1, 0, 6, 527587, 1.9767347639985382
---------------------------------
---------------------------------
-Trial: 3
-Model: Facenet
-Seed: 559969
-Dataset: dataset
-Accuracy: 1.0
-Sensitivity: 1.0
-Specificity: 1.0
-Precision: 1.0
-F1 Score: 1.0
-TN: 7
-FP: 0
-FN: 0
-TP: 5
-Avg Time: 1.9767347639985382
-Excel format: 5, 0, 0, 7, 559969, 1.9767347639985382
---------------------------------
---------------------------------
-Trial: 4
-Model: Facenet
-Seed: 191215
-Dataset: dataset
-Accuracy: 0.8461538461538461
-Sensitivity: 0.7142857142857143
-Specificity: 1.0
-Precision: 1.0
-F1 Score: 0.8333333333333333
-TN: 6
-FP: 0
-FN: 2
-TP: 5
-Avg Time: 1.9767347639985382
-Excel format: 5, 2, 0, 6, 191215, 1.9767347639985382
---------------------------------
---------------------------------
-Trial: 5
-Model: Facenet
-Seed: 221761
-Dataset: dataset
-Accuracy: 1.0
-Sensitivity: 1.0
-Specificity: 1.0
-Precision: 1.0
-F1 Score: 1.0
-TN: 7
-FP: 0
-FN: 0
-TP: 4
-Avg Time: 1.9767347639985382
-Excel format: 4, 0, 0, 7, 221761, 1.9767347639985382
+Avg Time: 1.96113729199511
+Excel format: 6, 1, 0, 6, 670686, 1.96113729199511
 --------------------------------
 --------------------------------
 Trial: 6
-Model: Facenet
-Seed: 732103
+Model: VGG-Face
+Seed: 264897
 Dataset: dataset
 Accuracy: 0.9230769230769231
 Sensitivity: 0.8333333333333334
@@ -100,30 +100,64 @@ TN: 7
 FP: 0
 FN: 1
 TP: 5
-Avg Time: 1.9767347639985382
-Excel format: 5, 1, 0, 7, 732103, 1.9767347639985382
+Avg Time: 1.96113729199511
+Excel format: 5, 1, 0, 7, 264897, 1.96113729199511
 --------------------------------
 --------------------------------
 Trial: 7
-Model: Facenet
-Seed: 307485
+Model: VGG-Face
+Seed: 762772
 Dataset: dataset
-Accuracy: 1.0
-Sensitivity: 1.0
+Accuracy: 0.9166666666666666
+Sensitivity: 0.8571428571428571
 Specificity: 1.0
 Precision: 1.0
-F1 Score: 1.0
-TN: 7
+F1 Score: 0.923076923076923
+TN: 5
 FP: 0
-FN: 0
-TP: 5
-Avg Time: 1.9767347639985382
-Excel format: 5, 0, 0, 7, 307485, 1.9767347639985382
+FN: 1
+TP: 6
+Avg Time: 1.96113729199511
+Excel format: 6, 1, 0, 5, 762772, 1.96113729199511
 --------------------------------
 --------------------------------
 Trial: 8
-Model: Facenet
-Seed: 827841
+Model: VGG-Face
+Seed: 346480
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 1.0
+Specificity: 0.7142857142857143
+Precision: 0.7142857142857143
+F1 Score: 0.8333333333333333
+TN: 5
+FP: 2
+FN: 0
+TP: 5
+Avg Time: 1.96113729199511
+Excel format: 5, 0, 2, 5, 346480, 1.96113729199511
+--------------------------------
+--------------------------------
+Trial: 9
+Model: VGG-Face
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 0.8333333333333334
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.9090909090909091
+TN: 6
+FP: 0
+FN: 1
+TP: 5
+Avg Time: 1.96113729199511
+Excel format: 5, 1, 0, 6, 244423, 1.96113729199511
+--------------------------------
+--------------------------------
+Trial: 10
+Model: VGG-Face
+Seed: 537021
 Dataset: dataset
 Accuracy: 1.0
 Sensitivity: 1.0
@@ -134,30 +168,30 @@ TN: 6
 FP: 0
 FN: 0
 TP: 5
-Avg Time: 1.9767347639985382
-Excel format: 5, 0, 0, 6, 827841, 1.9767347639985382
+Avg Time: 1.96113729199511
+Excel format: 5, 0, 0, 6, 537021, 1.96113729199511
 --------------------------------
 --------------------------------
-Trial: 9
+Trial: 1
 Model: Facenet
-Seed: 80910
+Seed: 709505
 Dataset: dataset
 Accuracy: 1.0
 Sensitivity: 1.0
 Specificity: 1.0
 Precision: 1.0
 F1 Score: 1.0
-TN: 8
+TN: 5
 FP: 0
 FN: 0
-TP: 4
-Avg Time: 1.9767347639985382
-Excel format: 4, 0, 0, 8, 80910, 1.9767347639985382
+TP: 7
+Avg Time: 1.9972537360002753
+Excel format: 7, 0, 0, 5, 709505, 1.9972537360002753
 --------------------------------
 --------------------------------
-Trial: 10
+Trial: 2
 Model: Facenet
-Seed: 227201
+Seed: 64890
 Dataset: dataset
 Accuracy: 1.0
 Sensitivity: 1.0
@@ -168,6 +202,1502 @@ TN: 6
 FP: 0
 FN: 0
 TP: 6
-Avg Time: 1.9767347639985382
-Excel format: 6, 0, 0, 6, 227201, 1.9767347639985382
+Avg Time: 1.9972537360002753
+Excel format: 6, 0, 0, 6, 64890, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 3
+Model: Facenet
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.75
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8571428571428571
+TN: 5
+FP: 0
+FN: 2
+TP: 6
+Avg Time: 1.9972537360002753
+Excel format: 6, 2, 0, 5, 903916, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 4
+Model: Facenet
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.6666666666666666
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8
+TN: 7
+FP: 0
+FN: 2
+TP: 4
+Avg Time: 1.9972537360002753
+Excel format: 4, 2, 0, 7, 165554, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 5
+Model: Facenet
+Seed: 670686
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 0.8571428571428571
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.923076923076923
+TN: 6
+FP: 0
+FN: 1
+TP: 6
+Avg Time: 1.9972537360002753
+Excel format: 6, 1, 0, 6, 670686, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 6
+Model: Facenet
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.6666666666666666
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8
+TN: 7
+FP: 0
+FN: 2
+TP: 4
+Avg Time: 1.9972537360002753
+Excel format: 4, 2, 0, 7, 264897, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 7
+Model: Facenet
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 0.8571428571428571
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.923076923076923
+TN: 5
+FP: 0
+FN: 1
+TP: 6
+Avg Time: 1.9972537360002753
+Excel format: 6, 1, 0, 5, 762772, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 8
+Model: Facenet
+Seed: 346480
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 7
+FP: 0
+FN: 0
+TP: 5
+Avg Time: 1.9972537360002753
+Excel format: 5, 0, 0, 7, 346480, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 9
+Model: Facenet
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 0.8333333333333334
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.9090909090909091
+TN: 6
+FP: 0
+FN: 1
+TP: 5
+Avg Time: 1.9972537360002753
+Excel format: 5, 1, 0, 6, 244423, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 10
+Model: Facenet
+Seed: 537021
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 5
+Avg Time: 1.9972537360002753
+Excel format: 5, 0, 0, 6, 537021, 1.9972537360002753
+--------------------------------
+--------------------------------
+Trial: 1
+Model: Facenet512
+Seed: 709505
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 5
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 1.9621668800036423
+Excel format: 7, 0, 0, 5, 709505, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 2
+Model: Facenet512
+Seed: 64890
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 6
+Avg Time: 1.9621668800036423
+Excel format: 6, 0, 0, 6, 64890, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 3
+Model: Facenet512
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.75
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8571428571428571
+TN: 5
+FP: 0
+FN: 2
+TP: 6
+Avg Time: 1.9621668800036423
+Excel format: 6, 2, 0, 5, 903916, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 4
+Model: Facenet512
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.6923076923076923
+Sensitivity: 0.3333333333333333
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.5
+TN: 7
+FP: 0
+FN: 4
+TP: 2
+Avg Time: 1.9621668800036423
+Excel format: 2, 4, 0, 7, 165554, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 5
+Model: Facenet512
+Seed: 670686
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 0.8571428571428571
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.923076923076923
+TN: 6
+FP: 0
+FN: 1
+TP: 6
+Avg Time: 1.9621668800036423
+Excel format: 6, 1, 0, 6, 670686, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 6
+Model: Facenet512
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.6923076923076923
+Sensitivity: 0.3333333333333333
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.5
+TN: 7
+FP: 0
+FN: 4
+TP: 2
+Avg Time: 1.9621668800036423
+Excel format: 2, 4, 0, 7, 264897, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 7
+Model: Facenet512
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 0.8571428571428571
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.923076923076923
+TN: 5
+FP: 0
+FN: 1
+TP: 6
+Avg Time: 1.9621668800036423
+Excel format: 6, 1, 0, 5, 762772, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 8
+Model: Facenet512
+Seed: 346480
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 0.6
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.7499999999999999
+TN: 7
+FP: 0
+FN: 2
+TP: 3
+Avg Time: 1.9621668800036423
+Excel format: 3, 2, 0, 7, 346480, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 9
+Model: Facenet512
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 0.8333333333333334
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.9090909090909091
+TN: 6
+FP: 0
+FN: 1
+TP: 5
+Avg Time: 1.9621668800036423
+Excel format: 5, 1, 0, 6, 244423, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 10
+Model: Facenet512
+Seed: 537021
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 5
+Avg Time: 1.9621668800036423
+Excel format: 5, 0, 0, 6, 537021, 1.9621668800036423
+--------------------------------
+--------------------------------
+Trial: 1
+Model: OpenFace
+Seed: 709505
+Dataset: dataset
+Accuracy: 0.5
+Sensitivity: 0.14285714285714285
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.25
+TN: 5
+FP: 0
+FN: 6
+TP: 1
+Avg Time: 1.8591826559999027
+Excel format: 1, 6, 0, 5, 709505, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 2
+Model: OpenFace
+Seed: 64890
+Dataset: dataset
+Accuracy: 0.5
+Sensitivity: 0.0
+Specificity: 1.0
+Precision: 0.0
+F1 Score: 0.0
+TN: 6
+FP: 0
+FN: 6
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 6, 0, 6, 64890, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 3
+Model: OpenFace
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.38461538461538464
+Sensitivity: 0.0
+Specificity: 1.0
+Precision: 0.0
+F1 Score: 0.0
+TN: 5
+FP: 0
+FN: 8
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 8, 0, 5, 903916, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 4
+Model: OpenFace
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.5384615384615384
+Sensitivity: 0.0
+Specificity: 1.0
+Precision: 0.0
+F1 Score: 0.0
+TN: 7
+FP: 0
+FN: 6
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 6, 0, 7, 165554, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 5
+Model: OpenFace
+Seed: 670686
+Dataset: dataset
+Accuracy: 0.46153846153846156
+Sensitivity: 0.0
+Specificity: 1.0
+Precision: 0.0
+F1 Score: 0.0
+TN: 6
+FP: 0
+FN: 7
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 7, 0, 6, 670686, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 6
+Model: OpenFace
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.5384615384615384
+Sensitivity: 0.0
+Specificity: 1.0
+Precision: 0.0
+F1 Score: 0.0
+TN: 7
+FP: 0
+FN: 6
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 6, 0, 7, 264897, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 7
+Model: OpenFace
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.3333333333333333
+Sensitivity: 0.0
+Specificity: 0.8
+Precision: 0.0
+F1 Score: 0.0
+TN: 4
+FP: 1
+FN: 7
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 7, 1, 4, 762772, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 8
+Model: OpenFace
+Seed: 346480
+Dataset: dataset
+Accuracy: 0.5
+Sensitivity: 0.0
+Specificity: 0.8571428571428571
+Precision: 0.0
+F1 Score: 0.0
+TN: 6
+FP: 1
+FN: 5
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 5, 1, 6, 346480, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 9
+Model: OpenFace
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.5
+Sensitivity: 0.0
+Specificity: 1.0
+Precision: 0.0
+F1 Score: 0.0
+TN: 6
+FP: 0
+FN: 6
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 6, 0, 6, 244423, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 10
+Model: OpenFace
+Seed: 537021
+Dataset: dataset
+Accuracy: 0.45454545454545453
+Sensitivity: 0.0
+Specificity: 0.8333333333333334
+Precision: 0.0
+F1 Score: 0.0
+TN: 5
+FP: 1
+FN: 5
+TP: 0
+Avg Time: 1.8591826559999027
+Excel format: 0, 5, 1, 5, 537021, 1.8591826559999027
+--------------------------------
+--------------------------------
+Trial: 1
+Model: DeepID
+Seed: 709505
+Dataset: dataset
+Accuracy: 0.25
+Sensitivity: 0.14285714285714285
+Specificity: 0.4
+Precision: 0.25
+F1 Score: 0.18181818181818182
+TN: 2
+FP: 3
+FN: 6
+TP: 1
+Avg Time: 1.7681724240037147
+Excel format: 1, 6, 3, 2, 709505, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 2
+Model: DeepID
+Seed: 64890
+Dataset: dataset
+Accuracy: 0.3333333333333333
+Sensitivity: 0.16666666666666666
+Specificity: 0.5
+Precision: 0.25
+F1 Score: 0.2
+TN: 3
+FP: 3
+FN: 5
+TP: 1
+Avg Time: 1.7681724240037147
+Excel format: 1, 5, 3, 3, 64890, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 3
+Model: DeepID
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.3076923076923077
+Sensitivity: 0.25
+Specificity: 0.4
+Precision: 0.4
+F1 Score: 0.3076923076923077
+TN: 2
+FP: 3
+FN: 6
+TP: 2
+Avg Time: 1.7681724240037147
+Excel format: 2, 6, 3, 2, 903916, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 4
+Model: DeepID
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.5384615384615384
+Sensitivity: 0.0
+Specificity: 1.0
+Precision: 0.0
+F1 Score: 0.0
+TN: 7
+FP: 0
+FN: 6
+TP: 0
+Avg Time: 1.7681724240037147
+Excel format: 0, 6, 0, 7, 165554, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 5
+Model: DeepID
+Seed: 670686
+Dataset: dataset
+Accuracy: 0.46153846153846156
+Sensitivity: 0.2857142857142857
+Specificity: 0.6666666666666666
+Precision: 0.5
+F1 Score: 0.36363636363636365
+TN: 4
+FP: 2
+FN: 5
+TP: 2
+Avg Time: 1.7681724240037147
+Excel format: 2, 5, 2, 4, 670686, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 6
+Model: DeepID
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.5384615384615384
+Sensitivity: 0.0
+Specificity: 1.0
+Precision: 0.0
+F1 Score: 0.0
+TN: 7
+FP: 0
+FN: 6
+TP: 0
+Avg Time: 1.7681724240037147
+Excel format: 0, 6, 0, 7, 264897, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 7
+Model: DeepID
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.3333333333333333
+Sensitivity: 0.14285714285714285
+Specificity: 0.6
+Precision: 0.3333333333333333
+F1 Score: 0.2
+TN: 3
+FP: 2
+FN: 6
+TP: 1
+Avg Time: 1.7681724240037147
+Excel format: 1, 6, 2, 3, 762772, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 8
+Model: DeepID
+Seed: 346480
+Dataset: dataset
+Accuracy: 0.5833333333333334
+Sensitivity: 0.2
+Specificity: 0.8571428571428571
+Precision: 0.5
+F1 Score: 0.28571428571428575
+TN: 6
+FP: 1
+FN: 4
+TP: 1
+Avg Time: 1.7681724240037147
+Excel format: 1, 4, 1, 6, 346480, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 9
+Model: DeepID
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.3333333333333333
+Sensitivity: 0.0
+Specificity: 0.6666666666666666
+Precision: 0.0
+F1 Score: 0.0
+TN: 4
+FP: 2
+FN: 6
+TP: 0
+Avg Time: 1.7681724240037147
+Excel format: 0, 6, 2, 4, 244423, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 10
+Model: DeepID
+Seed: 537021
+Dataset: dataset
+Accuracy: 0.36363636363636365
+Sensitivity: 0.2
+Specificity: 0.5
+Precision: 0.25
+F1 Score: 0.22222222222222224
+TN: 3
+FP: 3
+FN: 4
+TP: 1
+Avg Time: 1.7681724240037147
+Excel format: 1, 4, 3, 3, 537021, 1.7681724240037147
+--------------------------------
+--------------------------------
+Trial: 1
+Model: ArcFace
+Seed: 709505
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 5
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 1.9070858600002247
+Excel format: 7, 0, 0, 5, 709505, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 2
+Model: ArcFace
+Seed: 64890
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 1.0
+Specificity: 0.8333333333333334
+Precision: 0.8571428571428571
+F1 Score: 0.923076923076923
+TN: 5
+FP: 1
+FN: 0
+TP: 6
+Avg Time: 1.9070858600002247
+Excel format: 6, 0, 1, 5, 64890, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 3
+Model: ArcFace
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 1.0
+Specificity: 0.8
+Precision: 0.8888888888888888
+F1 Score: 0.9411764705882353
+TN: 4
+FP: 1
+FN: 0
+TP: 8
+Avg Time: 1.9070858600002247
+Excel format: 8, 0, 1, 4, 903916, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 4
+Model: ArcFace
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 1.0
+Specificity: 0.8571428571428571
+Precision: 0.8571428571428571
+F1 Score: 0.923076923076923
+TN: 6
+FP: 1
+FN: 0
+TP: 6
+Avg Time: 1.9070858600002247
+Excel format: 6, 0, 1, 6, 165554, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 5
+Model: ArcFace
+Seed: 670686
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 1.9070858600002247
+Excel format: 7, 0, 0, 6, 670686, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 6
+Model: ArcFace
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 1.0
+Specificity: 0.8571428571428571
+Precision: 0.8571428571428571
+F1 Score: 0.923076923076923
+TN: 6
+FP: 1
+FN: 0
+TP: 6
+Avg Time: 1.9070858600002247
+Excel format: 6, 0, 1, 6, 264897, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 7
+Model: ArcFace
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 1.0
+Specificity: 0.6
+Precision: 0.7777777777777778
+F1 Score: 0.8750000000000001
+TN: 3
+FP: 2
+FN: 0
+TP: 7
+Avg Time: 1.9070858600002247
+Excel format: 7, 0, 2, 3, 762772, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 8
+Model: ArcFace
+Seed: 346480
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 7
+FP: 0
+FN: 0
+TP: 5
+Avg Time: 1.9070858600002247
+Excel format: 5, 0, 0, 7, 346480, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 9
+Model: ArcFace
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.75
+Sensitivity: 1.0
+Specificity: 0.5
+Precision: 0.6666666666666666
+F1 Score: 0.8
+TN: 3
+FP: 3
+FN: 0
+TP: 6
+Avg Time: 1.9070858600002247
+Excel format: 6, 0, 3, 3, 244423, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 10
+Model: ArcFace
+Seed: 537021
+Dataset: dataset
+Accuracy: 0.9090909090909091
+Sensitivity: 1.0
+Specificity: 0.8333333333333334
+Precision: 0.8333333333333334
+F1 Score: 0.9090909090909091
+TN: 5
+FP: 1
+FN: 0
+TP: 5
+Avg Time: 1.9070858600002247
+Excel format: 5, 0, 1, 5, 537021, 1.9070858600002247
+--------------------------------
+--------------------------------
+Trial: 1
+Model: SFace
+Seed: 709505
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 5
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 1.7211888799932786
+Excel format: 7, 0, 0, 5, 709505, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 2
+Model: SFace
+Seed: 64890
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 6
+Avg Time: 1.7211888799932786
+Excel format: 6, 0, 0, 6, 64890, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 3
+Model: SFace
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.75
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8571428571428571
+TN: 5
+FP: 0
+FN: 2
+TP: 6
+Avg Time: 1.7211888799932786
+Excel format: 6, 2, 0, 5, 903916, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 4
+Model: SFace
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.6666666666666666
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8
+TN: 7
+FP: 0
+FN: 2
+TP: 4
+Avg Time: 1.7211888799932786
+Excel format: 4, 2, 0, 7, 165554, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 5
+Model: SFace
+Seed: 670686
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 0.8571428571428571
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.923076923076923
+TN: 6
+FP: 0
+FN: 1
+TP: 6
+Avg Time: 1.7211888799932786
+Excel format: 6, 1, 0, 6, 670686, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 6
+Model: SFace
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.6666666666666666
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8
+TN: 7
+FP: 0
+FN: 2
+TP: 4
+Avg Time: 1.7211888799932786
+Excel format: 4, 2, 0, 7, 264897, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 7
+Model: SFace
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 0.8571428571428571
+Specificity: 0.8
+Precision: 0.8571428571428571
+F1 Score: 0.8571428571428571
+TN: 4
+FP: 1
+FN: 1
+TP: 6
+Avg Time: 1.7211888799932786
+Excel format: 6, 1, 1, 4, 762772, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 8
+Model: SFace
+Seed: 346480
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 0.6
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.7499999999999999
+TN: 7
+FP: 0
+FN: 2
+TP: 3
+Avg Time: 1.7211888799932786
+Excel format: 3, 2, 0, 7, 346480, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 9
+Model: SFace
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 0.8333333333333334
+Specificity: 0.8333333333333334
+Precision: 0.8333333333333334
+F1 Score: 0.8333333333333334
+TN: 5
+FP: 1
+FN: 1
+TP: 5
+Avg Time: 1.7211888799932786
+Excel format: 5, 1, 1, 5, 244423, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 10
+Model: SFace
+Seed: 537021
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 5
+Avg Time: 1.7211888799932786
+Excel format: 5, 0, 0, 6, 537021, 1.7211888799932786
+--------------------------------
+--------------------------------
+Trial: 1
+Model: GhostFaceNet
+Seed: 709505
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 5
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 1.9080588439956774
+Excel format: 7, 0, 0, 5, 709505, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 2
+Model: GhostFaceNet
+Seed: 64890
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 6
+Avg Time: 1.9080588439956774
+Excel format: 6, 0, 0, 6, 64890, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 3
+Model: GhostFaceNet
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 0.875
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.9333333333333333
+TN: 5
+FP: 0
+FN: 1
+TP: 7
+Avg Time: 1.9080588439956774
+Excel format: 7, 1, 0, 5, 903916, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 4
+Model: GhostFaceNet
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.7692307692307693
+Sensitivity: 0.5
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.6666666666666666
+TN: 7
+FP: 0
+FN: 3
+TP: 3
+Avg Time: 1.9080588439956774
+Excel format: 3, 3, 0, 7, 165554, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 5
+Model: GhostFaceNet
+Seed: 670686
+Dataset: dataset
+Accuracy: 0.9230769230769231
+Sensitivity: 0.8571428571428571
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.923076923076923
+TN: 6
+FP: 0
+FN: 1
+TP: 6
+Avg Time: 1.9080588439956774
+Excel format: 6, 1, 0, 6, 670686, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 6
+Model: GhostFaceNet
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.7692307692307693
+Sensitivity: 0.5
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.6666666666666666
+TN: 7
+FP: 0
+FN: 3
+TP: 3
+Avg Time: 1.9080588439956774
+Excel format: 3, 3, 0, 7, 264897, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 7
+Model: GhostFaceNet
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 0.8571428571428571
+Specificity: 0.8
+Precision: 0.8571428571428571
+F1 Score: 0.8571428571428571
+TN: 4
+FP: 1
+FN: 1
+TP: 6
+Avg Time: 1.9080588439956774
+Excel format: 6, 1, 1, 4, 762772, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 8
+Model: GhostFaceNet
+Seed: 346480
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 0.6
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.7499999999999999
+TN: 7
+FP: 0
+FN: 2
+TP: 3
+Avg Time: 1.9080588439956774
+Excel format: 3, 2, 0, 7, 346480, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 9
+Model: GhostFaceNet
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.9166666666666666
+Sensitivity: 0.8333333333333334
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.9090909090909091
+TN: 6
+FP: 0
+FN: 1
+TP: 5
+Avg Time: 1.9080588439956774
+Excel format: 5, 1, 0, 6, 244423, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 10
+Model: GhostFaceNet
+Seed: 537021
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 5
+Avg Time: 1.9080588439956774
+Excel format: 5, 0, 0, 6, 537021, 1.9080588439956774
+--------------------------------
+--------------------------------
+Trial: 1
+Model: Buffalo_L
+Seed: 709505
+Dataset: dataset
+Accuracy: 0.25
+Sensitivity: 0.42857142857142855
+Specificity: 0.0
+Precision: 0.375
+F1 Score: 0.39999999999999997
+TN: 0
+FP: 5
+FN: 4
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 4, 5, 0, 709505, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 2
+Model: Buffalo_L
+Seed: 64890
+Dataset: dataset
+Accuracy: 0.3333333333333333
+Sensitivity: 0.6666666666666666
+Specificity: 0.0
+Precision: 0.4
+F1 Score: 0.5
+TN: 0
+FP: 6
+FN: 2
+TP: 4
+Avg Time: 1.7717789240006823
+Excel format: 4, 2, 6, 0, 64890, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 3
+Model: Buffalo_L
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.23076923076923078
+Sensitivity: 0.375
+Specificity: 0.0
+Precision: 0.375
+F1 Score: 0.375
+TN: 0
+FP: 5
+FN: 5
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 5, 5, 0, 903916, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 4
+Model: Buffalo_L
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.23076923076923078
+Sensitivity: 0.5
+Specificity: 0.0
+Precision: 0.3
+F1 Score: 0.37499999999999994
+TN: 0
+FP: 7
+FN: 3
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 3, 7, 0, 165554, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 5
+Model: Buffalo_L
+Seed: 670686
+Dataset: dataset
+Accuracy: 0.23076923076923078
+Sensitivity: 0.42857142857142855
+Specificity: 0.0
+Precision: 0.3333333333333333
+F1 Score: 0.375
+TN: 0
+FP: 6
+FN: 4
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 4, 6, 0, 670686, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 6
+Model: Buffalo_L
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.23076923076923078
+Sensitivity: 0.5
+Specificity: 0.0
+Precision: 0.3
+F1 Score: 0.37499999999999994
+TN: 0
+FP: 7
+FN: 3
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 3, 7, 0, 264897, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 7
+Model: Buffalo_L
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.25
+Sensitivity: 0.42857142857142855
+Specificity: 0.0
+Precision: 0.375
+F1 Score: 0.39999999999999997
+TN: 0
+FP: 5
+FN: 4
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 4, 5, 0, 762772, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 8
+Model: Buffalo_L
+Seed: 346480
+Dataset: dataset
+Accuracy: 0.25
+Sensitivity: 0.6
+Specificity: 0.0
+Precision: 0.3
+F1 Score: 0.4
+TN: 0
+FP: 7
+FN: 2
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 2, 7, 0, 346480, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 9
+Model: Buffalo_L
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.25
+Sensitivity: 0.5
+Specificity: 0.0
+Precision: 0.3333333333333333
+F1 Score: 0.4
+TN: 0
+FP: 6
+FN: 3
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 3, 6, 0, 244423, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 10
+Model: Buffalo_L
+Seed: 537021
+Dataset: dataset
+Accuracy: 0.2727272727272727
+Sensitivity: 0.6
+Specificity: 0.0
+Precision: 0.3333333333333333
+F1 Score: 0.42857142857142855
+TN: 0
+FP: 6
+FN: 2
+TP: 3
+Avg Time: 1.7717789240006823
+Excel format: 3, 2, 6, 0, 537021, 1.7717789240006823
+--------------------------------
+--------------------------------
+Trial: 1
+Model: Dlib
+Seed: 709505
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 5
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 2.1846559040038844
+Excel format: 7, 0, 0, 5, 709505, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 2
+Model: Dlib
+Seed: 64890
+Dataset: dataset
+Accuracy: 0.75
+Sensitivity: 1.0
+Specificity: 0.5
+Precision: 0.6666666666666666
+F1 Score: 0.8
+TN: 3
+FP: 3
+FN: 0
+TP: 6
+Avg Time: 2.1846559040038844
+Excel format: 6, 0, 3, 3, 64890, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 3
+Model: Dlib
+Seed: 903916
+Dataset: dataset
+Accuracy: 0.7692307692307693
+Sensitivity: 0.875
+Specificity: 0.6
+Precision: 0.7777777777777778
+F1 Score: 0.823529411764706
+TN: 3
+FP: 2
+FN: 1
+TP: 7
+Avg Time: 2.1846559040038844
+Excel format: 7, 1, 2, 3, 903916, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 4
+Model: Dlib
+Seed: 165554
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.6666666666666666
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8
+TN: 7
+FP: 0
+FN: 2
+TP: 4
+Avg Time: 2.1846559040038844
+Excel format: 4, 2, 0, 7, 165554, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 5
+Model: Dlib
+Seed: 670686
+Dataset: dataset
+Accuracy: 1.0
+Sensitivity: 1.0
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 1.0
+TN: 6
+FP: 0
+FN: 0
+TP: 7
+Avg Time: 2.1846559040038844
+Excel format: 7, 0, 0, 6, 670686, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 6
+Model: Dlib
+Seed: 264897
+Dataset: dataset
+Accuracy: 0.8461538461538461
+Sensitivity: 0.6666666666666666
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8
+TN: 7
+FP: 0
+FN: 2
+TP: 4
+Avg Time: 2.1846559040038844
+Excel format: 4, 2, 0, 7, 264897, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 7
+Model: Dlib
+Seed: 762772
+Dataset: dataset
+Accuracy: 0.6666666666666666
+Sensitivity: 0.7142857142857143
+Specificity: 0.6
+Precision: 0.7142857142857143
+F1 Score: 0.7142857142857143
+TN: 3
+FP: 2
+FN: 2
+TP: 5
+Avg Time: 2.1846559040038844
+Excel format: 5, 2, 2, 3, 762772, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 8
+Model: Dlib
+Seed: 346480
+Dataset: dataset
+Accuracy: 0.5833333333333334
+Sensitivity: 0.8
+Specificity: 0.42857142857142855
+Precision: 0.5
+F1 Score: 0.6153846153846154
+TN: 3
+FP: 4
+FN: 1
+TP: 4
+Avg Time: 2.1846559040038844
+Excel format: 4, 1, 4, 3, 346480, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 9
+Model: Dlib
+Seed: 244423
+Dataset: dataset
+Accuracy: 0.8333333333333334
+Sensitivity: 1.0
+Specificity: 0.6666666666666666
+Precision: 0.75
+F1 Score: 0.8571428571428571
+TN: 4
+FP: 2
+FN: 0
+TP: 6
+Avg Time: 2.1846559040038844
+Excel format: 6, 0, 2, 4, 244423, 2.1846559040038844
+--------------------------------
+--------------------------------
+Trial: 10
+Model: Dlib
+Seed: 537021
+Dataset: dataset
+Accuracy: 0.8181818181818182
+Sensitivity: 1.0
+Specificity: 0.6666666666666666
+Precision: 0.7142857142857143
+F1 Score: 0.8333333333333333
+TN: 4
+FP: 2
+FN: 0
+TP: 5
+Avg Time: 2.1846559040038844
+Excel format: 5, 0, 2, 4, 537021, 2.1846559040038844
 --------------------------------
