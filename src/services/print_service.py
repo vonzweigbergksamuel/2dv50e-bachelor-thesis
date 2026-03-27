@@ -101,3 +101,10 @@ def print_current_status(msg: str):
     Prints the current status of the task.
     """
     print(f"{msg}")
+    
+def show_taken_time(start_time: float, end_time: float):
+    """
+    Shows the time taken for the task.
+    """
+    time_taken = (end_time - start_time) / 60
+    print(f"Time taken: {round(time_taken, 2)} minutes")

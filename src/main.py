@@ -14,13 +14,14 @@ from services.preprocess_service import (
     set_up_directories,
 )
 from services.print_service import (
-    export_to_google_sheet,
     export_model_to_google_sheet,
+    export_to_google_sheet,
     print_current_status,
     print_scores,
     save_dataset_to_file,
     save_results_to_file,
     show_progress,
+    show_taken_time,
 )
 from services.scores_service import calculate_scores
 from services.splitting_service import splitting_service
@@ -34,7 +35,7 @@ def main():
     datasets = os.listdir(data_path)
 
     set_up_directories()
-    
+
     completed_datasets = 0
 
     for dataset in datasets:
@@ -42,7 +43,7 @@ def main():
         path = data_path / dataset
         save_dataset_to_file(dataset)
         seeds = get_random_seeds(TRIALS)
-        
+
         completed_models = 0
 
         for model in MODELS:
@@ -102,13 +103,13 @@ def main():
 
             completed_models += 1
             show_progress("Models", completed_models, len(MODELS))
-            
+
             end_time = time.perf_counter()
-            print(f"Time taken for model {model}: {end_time - start_time} seconds")
+            show_taken_time(start_time, end_time)
 
         completed_datasets += 1
         show_progress("Datasets", completed_datasets, len(datasets))
-        
+
     print_current_status("Experiment completed!")
 
 

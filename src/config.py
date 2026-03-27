@@ -2,12 +2,12 @@
 # Configuration
 #######################################
 # Models to benchmark
-# MODELS = ["Facenet"]
-MODELS = [
-    "VGG-Face", "Facenet", "Facenet512", "OpenFace",
-    "DeepID", "ArcFace", "SFace", "GhostFaceNet",
-    "Buffalo_L",
-]
+MODELS = ["Facenet"]
+# MODELS = [
+#     "VGG-Face", "Facenet", "Facenet512", "OpenFace",
+#     "DeepID", "ArcFace", "SFace", "GhostFaceNet",
+#     "Buffalo_L",
+# ]
 # DeepFace, Dlib
 
 # The face detector model to be used
