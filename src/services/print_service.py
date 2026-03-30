@@ -108,3 +108,12 @@ def show_taken_time(start_time: float, end_time: float):
     """
     time_taken = (end_time - start_time) / 60
     print(f"Time taken: {round(time_taken, 2)} minutes")
+    
+def print_to_files(msg: str):
+    """
+    Prints the message to the files.
+    """
+    with open(RESULTS_FILE, "a", encoding="utf-8") as f:
+        f.write(f"{msg}\n")
+    with open(GOOGLE_SHEET_FILE, "a", encoding="utf-8") as f:
+        f.write(f"{msg}\n")

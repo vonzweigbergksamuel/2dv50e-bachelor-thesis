@@ -12,6 +12,7 @@ from services.print_service import show_progress
 # CONSTANTS
 ##############################
 UNKNOWN = "Unknown"
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif", ".webp"}
 
 
 def pre_process(dataset_path: pathlib.Path, model: str):
@@ -21,35 +22,55 @@ def pre_process(dataset_path: pathlib.Path, model: str):
     all_subjects = []
     time_per_run = []
 
-    identities = sorted(os.listdir(dataset_path))
+    identities = sorted(
+        d for d in os.listdir(dataset_path)
+        if (dataset_path / d).is_dir()
+    )
+    
+    number_of_identities = len(identities)
 
     completed_identities = 0
 
     for identity in identities:
         identity_path = dataset_path / identity
-        images = sorted(os.listdir(identity_path))
+        images = sorted(
+            f for f in os.listdir(identity_path)
+            if pathlib.Path(f).suffix.lower() in IMAGE_EXTENSIONS
+        )
 
         if len(images) < 2:
+            number_of_identities -= 1
             continue
 
         embedded_images = []
         for image in images:
             image_path = identity_path / image
-            start_time = time.perf_counter()
-            embedded_image = DeepFace.represent(
-                img_path=image_path, model_name=model, detector_backend=DETECTOR_BACKEND
-            )
-            end_time = time.perf_counter()
-            time_per_run.append(end_time - start_time)
+            try:
+                start_time = time.perf_counter()
+                embedded_image = DeepFace.represent(
+                    img_path=str(image_path),
+                    model_name=model,
+                    detector_backend=DETECTOR_BACKEND,
+                    enforce_detection=False,
+                )
+                end_time = time.perf_counter()
+                time_per_run.append(end_time - start_time)
+                embedded_images.append(embedded_image[0]["embedding"])
+            except Exception as e:
+                print(f"  [SKIP] Failed to embed {image_path}: {e}")
 
-            embedded_images.append(embedded_image[0]["embedding"])
+        if len(embedded_images) < 2:
+            number_of_identities -= 1
+            continue
 
         all_subjects.append({"identity": identity, "images": embedded_images})
 
         completed_identities += 1
-        show_progress("Preprocessing", completed_identities, len(identities))
+        show_progress("Preprocessing", completed_identities, number_of_identities)
 
-    avg_time_per_embedding = sum(time_per_run) / len(time_per_run)
+    avg_time_per_embedding = (
+        sum(time_per_run) / len(time_per_run) if time_per_run else 0.0
+    )
 
     return all_subjects, avg_time_per_embedding
 

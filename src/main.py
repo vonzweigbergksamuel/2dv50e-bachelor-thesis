@@ -18,6 +18,7 @@ from services.print_service import (
     export_to_google_sheet,
     print_current_status,
     print_scores,
+    print_to_files,
     save_dataset_to_file,
     save_results_to_file,
     show_progress,
@@ -32,7 +33,10 @@ load_dotenv()
 def main():
     download_models()
     data_path = pathlib.Path(__file__).parent.parent / "data"
-    datasets = os.listdir(data_path)
+    datasets = sorted(
+        d for d in os.listdir(data_path)
+        if (data_path / d).is_dir()
+    )
 
     set_up_directories()
 
@@ -49,57 +53,76 @@ def main():
         for model in MODELS:
             start_time = time.perf_counter()
             print_current_status(f"Processing model: {model}")
-            export_model_to_google_sheet(model)
-            subjects, avg_time_per_embedding = pre_process(path, model)
 
-            for trial, seed in enumerate(seeds):
-                known_subjects, unknown_subjects = splitting_service(subjects, seed)
+            try:
+                export_model_to_google_sheet(model)
+                subjects, avg_time_per_embedding = pre_process(path, model)
 
-                for subject in known_subjects:
-                    database_service.insert_subject(
-                        subject["identity"], subject["known_images"]
-                    )
+                if not subjects:
+                    print_current_status(f"  [SKIP] No valid subjects for {model} on {dataset}")
+                    completed_models += 1
+                    continue
 
-                actual, predicted = run_experiment(
-                    model, known_subjects, unknown_subjects
-                )
+                for trial, seed in enumerate(seeds):
+                    try:
+                        known_subjects, unknown_subjects = splitting_service(subjects, seed)
 
-                (
-                    accuracy,
-                    sensitivity,
-                    specificity,
-                    precision,
-                    f1_score,
-                    tn,
-                    fp,
-                    fn,
-                    tp,
-                ) = calculate_scores(actual, predicted)
+                        for subject in known_subjects:
+                            database_service.insert_subject(
+                                subject["identity"], subject["known_images"]
+                            )
 
-                scores = {
-                    "trial": trial + 1,
-                    "seed": seed,
-                    "model": model,
-                    "dataset": dataset,
-                    "accuracy": accuracy,
-                    "sensitivity": sensitivity,
-                    "specificity": specificity,
-                    "precision": precision,
-                    "f1_score": f1_score,
-                    "tn": tn,
-                    "fp": fp,
-                    "fn": fn,
-                    "tp": tp,
-                    "avg_time": avg_time_per_embedding,
-                }
+                        actual, predicted = run_experiment(
+                            model, known_subjects, unknown_subjects
+                        )
+                        
+                        print(f"Actual: {actual}")
+                        print(f"Predicted: {predicted}")
 
-                print_scores(scores)
+                        (
+                            accuracy,
+                            sensitivity,
+                            specificity,
+                            precision,
+                            f1_score,
+                            tn,
+                            fp,
+                            fn,
+                            tp,
+                        ) = calculate_scores(actual, predicted)
 
-                save_results_to_file(scores, model)
+                        scores = {
+                            "trial": trial + 1,
+                            "seed": seed,
+                            "model": model,
+                            "dataset": dataset,
+                            "accuracy": accuracy,
+                            "sensitivity": sensitivity,
+                            "specificity": specificity,
+                            "precision": precision,
+                            "f1_score": f1_score,
+                            "tn": tn,
+                            "fp": fp,
+                            "fn": fn,
+                            "tp": tp,
+                            "avg_time": avg_time_per_embedding,
+                        }
 
-                export_to_google_sheet(scores)
+                        print_scores(scores)
+                        save_results_to_file(scores, model)
+                        export_to_google_sheet(scores)
 
-                database_service.clear_database()
+                    except Exception as e:
+                        print_current_status(
+                            f"  [ERROR] Trial {trial + 1} failed for {model}: {e}"
+                        )
+                        print_to_files(f"  [ERROR] Trial {trial + 1} failed for {model}: {e}")
+                    finally:
+                        database_service.clear_database()
+
+            except Exception as e:
+                print_current_status(f"  [ERROR] Model {model} failed on {dataset}: {e}")
+                print_to_files(f"  [ERROR] Model {model} failed on {dataset}: {e}")
 
             completed_models += 1
             show_progress("Models", completed_models, len(MODELS))

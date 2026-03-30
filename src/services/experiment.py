@@ -1,12 +1,14 @@
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
 from deepface.modules.verification import find_threshold
+from sklearn.metrics.pairwise import cosine_similarity
 
 from services import database_service
 from services.preprocess_service import UNKNOWN
 
 
-def run_experiment(model: str, known_subjects: list[dict], unknown_subjects: list[dict]):
+def run_experiment(
+    model: str, known_subjects: list[dict], unknown_subjects: list[dict]
+):
     """
     Runs the experiment for a given model, known subjects and unknown subjects.
     """
@@ -22,12 +24,16 @@ def run_experiment(model: str, known_subjects: list[dict], unknown_subjects: lis
     for subject in known_subjects:
         for embedding in subject["unknown_images"]:
             actual.append(subject["identity"])
-            predicted.append(_predict(embedding, db_embeddings, db_identities, threshold))
+            predicted.append(
+                _predict(embedding, db_embeddings, db_identities, threshold)
+            )
 
     for subject in unknown_subjects:
         for embedding in subject["unknown_images"]:
             actual.append(UNKNOWN)
-            predicted.append(_predict(embedding, db_embeddings, db_identities, threshold))
+            predicted.append(
+                _predict(embedding, db_embeddings, db_identities, threshold)
+            )
 
     return actual, predicted
 
