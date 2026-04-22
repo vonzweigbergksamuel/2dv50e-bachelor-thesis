@@ -45,7 +45,7 @@ def adapter():
             shutil.move(str(subject_path), str(dest))
 
         os.removedirs(folder_path)
-        
+
     print(f"Adapter completed for {PATH_PREFIX}")
 
 

@@ -3,7 +3,7 @@ from deepface.modules.verification import find_threshold
 from sklearn.metrics.pairwise import cosine_similarity
 
 from services import database_service
-from services.preprocess_service import UNKNOWN
+from config import UNKNOWN
 
 
 def run_experiment(

@@ -14,12 +14,6 @@ wheels/
 .env*
 !.env.sample
 
-# Datasets
-data/
 
-db/
-
-test_subjects/
 LFW/
 RFW/
-dataset/

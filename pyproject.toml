@@ -1,7 +1,7 @@
 [project]
 name = "2dv50e-bachelor-thesis"
 version = "0.1.0"
-description = "Add your description here"
+description = "Experiment on the performance of the DeepFace frameworks models"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

@@ -9,7 +9,7 @@ PATH_PREFIX = "lfw-deepfunneled"
 
 def adapter():
     path = Path(__file__).parent.parent / "data" / "LFW"
-    entry_path = path # / PATH_PREFIX / PATH_PREFIX
+    entry_path = path / PATH_PREFIX / PATH_PREFIX
 
     subjects = os.listdir(entry_path)
 

@@ -3,171 +3,171 @@
 #################################
 --------------------------------
 Trial: 1
-Model: Buffalo_L
-Seed: 87378
+Model: Facenet512
+Seed: 479210
 Dataset: dataset
-Accuracy: 0.5833333333333334
-Sensitivity: 0.3333333333333333
-Specificity: 0.8333333333333334
-Precision: 0.6666666666666666
-F1 Score: 0.4444444444444444
-TN: 5
-FP: 1
-FN: 4
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 4, 1, 5, 87378, 0.9732296720030718
+Accuracy: 0.8571428571428571
+Sensitivity: 0.75
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8571428571428571
+TN: 6
+FP: 0
+FN: 2
+TP: 6
+Avg Time: 1.5499156080069951
+Excel format: 6, 2, 0, 6, 479210, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 2
-Model: Buffalo_L
-Seed: 931042
+Model: Facenet512
+Seed: 999244
 Dataset: dataset
-Accuracy: 0.5384615384615384
-Sensitivity: 0.3333333333333333
-Specificity: 0.7142857142857143
-Precision: 0.5
-F1 Score: 0.4
-TN: 5
-FP: 2
-FN: 4
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 4, 2, 5, 931042, 0.9732296720030718
+Accuracy: 0.8461538461538461
+Sensitivity: 0.7142857142857143
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8333333333333333
+TN: 6
+FP: 0
+FN: 2
+TP: 5
+Avg Time: 1.5499156080069951
+Excel format: 5, 2, 0, 6, 999244, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 3
-Model: Buffalo_L
-Seed: 774258
+Model: Facenet512
+Seed: 12881
 Dataset: dataset
-Accuracy: 0.5384615384615384
-Sensitivity: 0.3333333333333333
-Specificity: 0.7142857142857143
-Precision: 0.5
-F1 Score: 0.4
-TN: 5
-FP: 2
-FN: 4
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 4, 2, 5, 774258, 0.9732296720030718
+Accuracy: 0.8333333333333334
+Sensitivity: 0.6666666666666666
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8
+TN: 6
+FP: 0
+FN: 2
+TP: 4
+Avg Time: 1.5499156080069951
+Excel format: 4, 2, 0, 6, 12881, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 4
-Model: Buffalo_L
-Seed: 133562
+Model: Facenet512
+Seed: 360074
 Dataset: dataset
-Accuracy: 0.3076923076923077
-Sensitivity: 0.2857142857142857
-Specificity: 0.3333333333333333
-Precision: 0.3333333333333333
-F1 Score: 0.30769230769230765
-TN: 2
-FP: 4
-FN: 5
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 5, 4, 2, 133562, 0.9732296720030718
+Accuracy: 0.9230769230769231
+Sensitivity: 0.8333333333333334
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.9090909090909091
+TN: 7
+FP: 0
+FN: 1
+TP: 5
+Avg Time: 1.5499156080069951
+Excel format: 5, 1, 0, 7, 360074, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 5
-Model: Buffalo_L
-Seed: 131967
+Model: Facenet512
+Seed: 644947
 Dataset: dataset
-Accuracy: 0.3076923076923077
-Sensitivity: 0.16666666666666666
-Specificity: 0.42857142857142855
-Precision: 0.2
-F1 Score: 0.1818181818181818
-TN: 3
-FP: 4
-FN: 5
-TP: 1
-Avg Time: 0.9732296720030718
-Excel format: 1, 5, 4, 3, 131967, 0.9732296720030718
+Accuracy: 0.8461538461538461
+Sensitivity: 0.75
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8571428571428571
+TN: 5
+FP: 0
+FN: 2
+TP: 6
+Avg Time: 1.5499156080069951
+Excel format: 6, 2, 0, 5, 644947, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 6
-Model: Buffalo_L
-Seed: 95184
+Model: Facenet512
+Seed: 530114
 Dataset: dataset
-Accuracy: 0.4166666666666667
-Sensitivity: 0.3333333333333333
-Specificity: 0.5
-Precision: 0.4
-F1 Score: 0.3636363636363636
-TN: 3
-FP: 3
-FN: 4
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 4, 3, 3, 95184, 0.9732296720030718
+Accuracy: 0.8571428571428571
+Sensitivity: 0.75
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8571428571428571
+TN: 6
+FP: 0
+FN: 2
+TP: 6
+Avg Time: 1.5499156080069951
+Excel format: 6, 2, 0, 6, 530114, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 7
-Model: Buffalo_L
-Seed: 381405
+Model: Facenet512
+Seed: 234536
 Dataset: dataset
-Accuracy: 0.4166666666666667
-Sensitivity: 0.3333333333333333
-Specificity: 0.5
-Precision: 0.4
-F1 Score: 0.3636363636363636
-TN: 3
-FP: 3
-FN: 4
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 4, 3, 3, 381405, 0.9732296720030718
+Accuracy: 0.7692307692307693
+Sensitivity: 0.5714285714285714
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.7272727272727273
+TN: 6
+FP: 0
+FN: 3
+TP: 4
+Avg Time: 1.5499156080069951
+Excel format: 4, 3, 0, 6, 234536, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 8
-Model: Buffalo_L
-Seed: 545763
+Model: Facenet512
+Seed: 22662
 Dataset: dataset
-Accuracy: 0.38461538461538464
-Sensitivity: 0.2857142857142857
-Specificity: 0.5
-Precision: 0.4
-F1 Score: 0.3333333333333333
-TN: 3
-FP: 3
-FN: 5
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 5, 3, 3, 545763, 0.9732296720030718
+Accuracy: 0.8461538461538461
+Sensitivity: 0.6666666666666666
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8
+TN: 7
+FP: 0
+FN: 2
+TP: 4
+Avg Time: 1.5499156080069951
+Excel format: 4, 2, 0, 7, 22662, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 9
-Model: Buffalo_L
-Seed: 269191
+Model: Facenet512
+Seed: 861634
 Dataset: dataset
-Accuracy: 0.5
-Sensitivity: 0.4
-Specificity: 0.5714285714285714
-Precision: 0.4
-F1 Score: 0.4000000000000001
-TN: 4
-FP: 3
-FN: 3
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 3, 3, 4, 269191, 0.9732296720030718
+Accuracy: 0.8461538461538461
+Sensitivity: 0.7142857142857143
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.8333333333333333
+TN: 6
+FP: 0
+FN: 2
+TP: 5
+Avg Time: 1.5499156080069951
+Excel format: 5, 2, 0, 6, 861634, 1.5499156080069951
 --------------------------------
 --------------------------------
 Trial: 10
-Model: Buffalo_L
-Seed: 753147
+Model: Facenet512
+Seed: 554352
 Dataset: dataset
-Accuracy: 0.23076923076923078
-Sensitivity: 0.3333333333333333
-Specificity: 0.14285714285714285
-Precision: 0.25
-F1 Score: 0.28571428571428575
-TN: 1
-FP: 6
-FN: 4
-TP: 2
-Avg Time: 0.9732296720030718
-Excel format: 2, 4, 6, 1, 753147, 0.9732296720030718
+Accuracy: 0.7857142857142857
+Sensitivity: 0.625
+Specificity: 1.0
+Precision: 1.0
+F1 Score: 0.7692307692307693
+TN: 6
+FP: 0
+FN: 3
+TP: 5
+Avg Time: 1.5499156080069951
+Excel format: 5, 3, 0, 6, 554352, 1.5499156080069951
 --------------------------------

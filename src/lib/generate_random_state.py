@@ -10,11 +10,10 @@ def generate_random_seed():
 
 def get_random_seeds(amount: int):
     seeds = []
-    
-    for i in range(amount):
+
+    for _ in range(amount):
         seed = generate_random_seed()
-        
+
         seeds.append(seed)
 
     return seeds
-        

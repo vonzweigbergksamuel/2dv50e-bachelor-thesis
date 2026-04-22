@@ -1,6 +1,6 @@
 from sklearn.model_selection import train_test_split
 
-from services.preprocess_service import UNKNOWN
+from config import UNKNOWN
 
 
 def splitting_service(subjects: list[dict], random_state: int):

@@ -8,7 +8,6 @@ from config import MODELS, TRIALS
 from lib.download_models import download_models
 from lib.generate_random_state import get_random_seeds
 from services import database_service
-from services.experiment import run_experiment
 from services.preprocess_service import (
     pre_process,
     set_up_directories,
@@ -24,6 +23,7 @@ from services.print_service import (
     show_progress,
     show_taken_time,
 )
+from services.run_experiment import run_experiment
 from services.scores_service import calculate_scores
 from services.splitting_service import splitting_service
 
@@ -33,10 +33,7 @@ load_dotenv()
 def main():
     download_models()
     data_path = pathlib.Path(__file__).parent.parent / "data"
-    datasets = sorted(
-        d for d in os.listdir(data_path)
-        if (data_path / d).is_dir()
-    )
+    datasets = sorted(d for d in os.listdir(data_path) if (data_path / d).is_dir())
 
     set_up_directories()
 
@@ -59,13 +56,17 @@ def main():
                 subjects, avg_time_per_embedding = pre_process(path, model)
 
                 if not subjects:
-                    print_current_status(f"  [SKIP] No valid subjects for {model} on {dataset}")
+                    print_current_status(
+                        f"  [SKIP] No valid subjects for {model} on {dataset}"
+                    )
                     completed_models += 1
                     continue
 
                 for trial, seed in enumerate(seeds):
                     try:
-                        known_subjects, unknown_subjects = splitting_service(subjects, seed)
+                        known_subjects, unknown_subjects = splitting_service(
+                            subjects, seed
+                        )
 
                         for subject in known_subjects:
                             database_service.insert_subject(
@@ -75,9 +76,6 @@ def main():
                         actual, predicted = run_experiment(
                             model, known_subjects, unknown_subjects
                         )
-                        
-                        print(f"Actual: {actual}")
-                        print(f"Predicted: {predicted}")
 
                         (
                             accuracy,
@@ -116,12 +114,16 @@ def main():
                         print_current_status(
                             f"  [ERROR] Trial {trial + 1} failed for {model}: {e}"
                         )
-                        print_to_files(f"  [ERROR] Trial {trial + 1} failed for {model}: {e}")
+                        print_to_files(
+                            f"  [ERROR] Trial {trial + 1} failed for {model}: {e}"
+                        )
                     finally:
                         database_service.clear_database()
 
             except Exception as e:
-                print_current_status(f"  [ERROR] Model {model} failed on {dataset}: {e}")
+                print_current_status(
+                    f"  [ERROR] Model {model} failed on {dataset}: {e}"
+                )
                 print_to_files(f"  [ERROR] Model {model} failed on {dataset}: {e}")
 
             completed_models += 1

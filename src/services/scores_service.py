@@ -1,4 +1,4 @@
-from services.preprocess_service import UNKNOWN
+from config import UNKNOWN
 
 # This service is used to calculate the following scores of a model: Accuracy, Sensitivity/Recall, Specificity, Precision, F1-score.
 

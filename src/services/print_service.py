@@ -77,6 +77,7 @@ def save_results_to_file(scores: dict, model: str):
         )
         f.write("--------------------------------\n")
 
+
 def export_model_to_google_sheet(model: str):
     """
     Exports the model to a google sheet.
@@ -85,6 +86,7 @@ def export_model_to_google_sheet(model: str):
         f.write("--------------------------------\n")
         f.write(f"- Model: {model}\n")
         f.write("--------------------------------\n")
+
 
 def export_to_google_sheet(score: dict):
     """
@@ -101,14 +103,16 @@ def print_current_status(msg: str):
     Prints the current status of the task.
     """
     print(f"{msg}")
-    
+
+
 def show_taken_time(start_time: float, end_time: float):
     """
     Shows the time taken for the task.
     """
     time_taken = (end_time - start_time) / 60
     print(f"Time taken: {round(time_taken, 2)} minutes")
-    
+
+
 def print_to_files(msg: str):
     """
     Prints the message to the files.

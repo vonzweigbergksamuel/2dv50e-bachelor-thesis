@@ -5,14 +5,8 @@ import time
 
 from deepface import DeepFace
 
-from config import DETECTOR_BACKEND, GOOGLE_SHEET_FILE, RESULTS_FILE
+from config import DETECTOR_BACKEND, GOOGLE_SHEET_FILE, RESULTS_FILE, IMAGE_EXTENSIONS
 from services.print_service import show_progress
-
-##############################
-# CONSTANTS
-##############################
-UNKNOWN = "Unknown"
-IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif", ".webp"}
 
 
 def pre_process(dataset_path: pathlib.Path, model: str):
@@ -23,10 +17,9 @@ def pre_process(dataset_path: pathlib.Path, model: str):
     time_per_run = []
 
     identities = sorted(
-        d for d in os.listdir(dataset_path)
-        if (dataset_path / d).is_dir()
+        d for d in os.listdir(dataset_path) if (dataset_path / d).is_dir()
     )
-    
+
     number_of_identities = len(identities)
 
     completed_identities = 0
@@ -34,7 +27,8 @@ def pre_process(dataset_path: pathlib.Path, model: str):
     for identity in identities:
         identity_path = dataset_path / identity
         images = sorted(
-            f for f in os.listdir(identity_path)
+            f
+            for f in os.listdir(identity_path)
             if pathlib.Path(f).suffix.lower() in IMAGE_EXTENSIONS
         )
 

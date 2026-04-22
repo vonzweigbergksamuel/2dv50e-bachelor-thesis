@@ -1,15 +1,14 @@
 #######################################
 # Configuration
 #######################################
+
 # Models to benchmark
-# MODELS = ["Facenet"]
 # MODELS = [
 #     "VGG-Face", "Facenet", "Facenet512", "OpenFace",
 #     "DeepID", "ArcFace", "SFace", "GhostFaceNet",
 #     "Buffalo_L", "Dlib",
 # ]
-# DeepFace
-MODELS = ["Buffalo_L"]
+MODELS = ["Facenet512"]
 
 # The face detector model to be used
 DETECTOR_BACKEND = "retinaface"
@@ -20,3 +19,8 @@ TRIALS = 10
 # File names
 RESULTS_FILE = "results.txt"
 GOOGLE_SHEET_FILE = "google_sheet.txt"
+
+
+# Constants
+UNKNOWN = "Unknown"
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
