@@ -12,6 +12,7 @@ dependencies = [
     "psycopg[binary]>=3.3.3",
     "python-dotenv>=1.2.1",
     "scikit-learn>=1.8.0",
+    "scipy>=1.17.1",
     "sqlalchemy>=2.0.47",
     "tf-keras>=2.20.1",
 ]
