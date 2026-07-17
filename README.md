@@ -6,9 +6,9 @@ The project evaluates face recognition models from the DeepFace framework in a f
 - Samuel von Zweigbergk (sv222rr)
 - Ludwig Wittenberg (lw223cq)
 
-## Thesis
+## Link to thesis on DiVA
 
-Add your thesis link here: `[Thesis title](https://example.com)`
+[Evaluating Face Recognition Models in the DeepFace Framework: An Updated Multi-Dataset Study of Performance, Efficiency, and Generalization](https://lnu.diva-portal.org/smash/record.jsf?dswid=8059&pid=diva2%3A2075365&c=2&searchType=SIMPLE&language=en&query=ludwig+wittenberg&af=%5B%5D&aq=%5B%5B%5D%5D&aq2=%5B%5B%5D%5D&aqe=%5B%5D&noOfRows=50&sortOrder=author_sort_asc&sortOrder2=title_sort_asc&onlyFullText=false&sf=all)
 
 ## Repository Structure
 
